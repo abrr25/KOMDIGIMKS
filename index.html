@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigiMap Komdigi - Peta Interaktif & Onboarding</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Splash Screen / Welcome Screen -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo-container">
+        <img src="logo.png" alt="Logo DigiMap" class="splash-logo">
+        <div class="splash-logo-glow"></div>
+      </div>
+      <h1 class="splash-title">DigiMap <span>Komdigi</span></h1>
+      <p class="splash-subtitle">Interactive Map & Intern Companion</p>
+      <div class="splash-loader">
+        <div class="loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Blur Elements -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Header / Top Bar -->
+  <header class="app-header">
+    <div class="logo-area">
+      <img src="logo.png" alt="Logo DigiMap" class="logo-img">
+      <div>
+        <h1>DigiMap <span>Komdigi</span></h1>
+        <p class="subtitle">Interactive Map & Intern Companion</p>
+      </div>
+    </div>
+
+    <!-- Search Area -->
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="search-input" placeholder="Cari nama karyawan, divisi, ruangan..." autocomplete="off">
+        <button id="clear-search-btn" class="clear-btn hidden">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      
+      <!-- Auto Suggest List -->
+      <div id="search-suggestions" class="suggestions-dropdown hidden"></div>
+    </div>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="main-nav">
+      <button class="nav-item active" data-page="map">
+        <i data-lucide="map"></i> Peta Kantor
+      </button>
+      <button class="nav-item" data-page="intern">
+        <i data-lucide="graduation-cap"></i> Informasi Magang
+      </button>
+    </nav>
+
+    <!-- Real-time Clock -->
+    <div class="header-widgets">
+      <div id="digital-clock" class="clock-widget">
+        <i data-lucide="clock"></i>
+        <span id="clock-time">00:00:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page 1: Interactive Office Map -->
+  <div id="page-map" class="page-container active">
+
+  <!-- Quick Filter Tags -->
+  <div class="filters-bar">
+    <span class="filter-label">Filter Cepat:</span>
+    <button class="filter-tag" data-category="all">Semua Ruangan</button>
+    <button class="filter-tag" data-category="Kantor"><i data-lucide="briefcase"></i> Kantor Divisi</button>
+    <button class="filter-tag" data-category="Rapat"><i data-lucide="presentation"></i> Ruang Rapat</button>
+    <button class="filter-tag" data-category="Layanan"><i data-lucide="users"></i> Layanan Publik</button>
+    <button class="filter-tag" data-category="Fasilitas"><i data-lucide="coffee"></i> Fasilitas</button>
+  </div>
+
+  <!-- Main Container -->
+  <main class="app-main">
+    
+    <!-- Peta / Map Viewport (70% width) -->
+    <section class="map-viewport">
+      
+      <!-- Watermark Logo Komdigi -->
+      <div class="map-watermark">
+        <svg viewBox="0 0 100 100" class="watermark-svg">
+          <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" fill="none" />
+          <circle cx="50" cy="50" r="39" stroke="currentColor" stroke-width="0.5" fill="none" />
+          <!-- Curved waves mimicking official Komdigi logo wings -->
+          <path d="M 22,46 C 32,30 68,30 78,46 C 65,56 35,56 22,46 Z" fill="currentColor" />
+          <path d="M 25,54 C 34,40 66,40 75,54 C 63,62 37,62 25,54 Z" fill="currentColor" />
+          <path d="M 28,62 C 36,50 64,50 72,62 C 61,69 39,69 28,62 Z" fill="currentColor" />
+        </svg>
+      </div>
+      
+      <!-- Floor Info Banner -->
+      <div class="floor-banner">
+        <h2 id="current-floor-title">Lantai 1</h2>
+        <p id="current-floor-desc">Layanan Publik, Lobi Utama, & Kesekretariatan</p>
+      </div>
+
+      <!-- Map Display Area -->
+      <div class="map-container" id="zoom-container">
+        
+        <!-- Floor 1 SVG -->
+        <div class="floor-map active" id="map-floor-1">
+          <svg viewBox="0 0 800 500" class="floor-svg">
+            <!-- Building Outer Shell -->
+            <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
+            
+            <!-- Corridors / Walkway -->
+            <rect x="230" y="280" width="340" height="85" class="map-corridor" />
+            <rect x="230" y="100" width="340" height="180" class="map-corridor" />
+            <rect x="200" y="220" width="400" height="60" class="map-corridor" />
+            
+            <!-- Lobi Utama & Resepsionis -->
+            <g class="room-group" data-room-id="l1-lobi">
+              <rect x="250" y="100" width="300" height="180" rx="12" class="room-path" />
+              <!-- Detailed Reception Desk -->
+              <path d="M 330,220 C 330,190 470,190 470,220" fill="none" stroke="#cbd5e1" stroke-width="4" opacity="0.8" />
+              <rect x="385" y="195" width="30" height="10" rx="2" fill="none" stroke="#cbd5e1" opacity="0.6" />
+              <!-- Text Labels -->
+              <text x="400" y="150" class="room-label">Lobi Utama & Resepsionis</text>
+              <text x="400" y="170" class="room-category-label">Layanan Publik</text>
+            </g>
+            
+            <!-- Ruang Rapat Toba -->
+            <g class="room-group" data-room-id="l1-rapat-toba">
+              <rect x="50" y="100" width="180" height="150" rx="12" class="room-path" />
+              <!-- Detailed Conference Table & Chairs -->
+              <rect x="90" y="145" width="100" height="50" rx="25" fill="none" stroke="#cbd5e1" stroke-width="2" opacity="0.8" />
+              <!-- Chairs -->
+              <circle cx="110" cy="135" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="140" cy="135" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="170" cy="135" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="110" cy="205" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="140" cy="205" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="170" cy="205" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="80" cy="170" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="200" cy="170" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <!-- Text -->
+              <text x="140" y="123" class="room-label">Ruang Rapat Phinisi</text>
+              <text x="140" y="222" class="room-category-label">Ruang Rapat</text>
+            </g>
+            
+            <!-- Biro Kepegawaian & Tata Usaha -->
+            <g class="room-group" data-room-id="l1-kepegawaian">
+              <rect x="570" y="100" width="180" height="220" rx="12" class="room-path" />
+              <!-- Workstations -->
+              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
+                <!-- Desk Row 1 -->
+                <rect x="590" y="120" width="35" height="20" rx="2" />
+                <rect x="590" y="150" width="35" height="20" rx="2" />
+                <!-- Desk Row 2 -->
+                <rect x="695" y="120" width="35" height="20" rx="2" />
+                <rect x="695" y="150" width="35" height="20" rx="2" />
+                <!-- Desk Row 3 -->
+                <rect x="590" y="240" width="35" height="20" rx="2" />
+                <rect x="695" y="240" width="35" height="20" rx="2" />
+              </g>
+              <text x="660" y="200" class="room-label">Bagian Umum &</text>
+              <text x="660" y="218" class="room-label">Kepegawaian</text>
+              <text x="660" y="295" class="room-category-label">Kantor</text>
+            </g>
+            
+            <!-- Mushola Al-Ikhlas -->
+            <g class="room-group" data-room-id="l1-mushola">
+              <rect x="50" y="270" width="180" height="130" rx="12" class="room-path" />
+              <!-- Mihrab & Carpet Lines -->
+              <path d="M 50,335 L 70,335 L 70,365 L 50,365" fill="none" stroke="#cbd5e1" stroke-width="1.5" opacity="0.6" />
+              <line x1="90" y1="280" x2="90" y2="390" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3" opacity="0.4" />
+              <line x1="130" y1="280" x2="130" y2="390" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3" opacity="0.4" />
+              <text x="140" y="330" class="room-label">Mushola Al-Ikhlas</text>
+              <text x="140" y="355" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <!-- Pantry Lantai 1 -->
+            <g class="room-group" data-room-id="l1-pantry">
+              <rect x="570" y="340" width="180" height="85" rx="12" class="room-path" />
+              <!-- Kitchen Sink & Counter Details -->
+              <rect x="580" y="345" width="160" height="15" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.7" />
+              <circle cx="600" cy="352" r="5" fill="none" stroke="#cbd5e1" opacity="0.7" />
+              <text x="660" y="390" class="room-label">Pantry</text>
+              <text x="660" y="410" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <!-- Elevators / Lift -->
+            <g class="elevator-group">
+              <rect x="370" y="375" width="60" height="55" rx="8" class="map-elevator" />
+              <line x1="370" y1="402" x2="430" y2="402" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <line x1="400" y1="375" x2="400" y2="430" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <text x="400" y="395" class="elevator-label">LIFT</text>
+            </g>
+            
+            <!-- Stairs / Tangga -->
+            <g class="stairs-group">
+              <rect x="440" y="375" width="60" height="55" rx="8" class="map-stairs" />
+              <line x1="440" y1="382" x2="500" y2="382" />
+              <line x1="440" y1="390" x2="500" y2="390" />
+              <line x1="440" y1="398" x2="500" y2="398" />
+              <line x1="440" y1="406" x2="500" y2="406" />
+              <line x1="440" y1="414" x2="500" y2="414" />
+              <line x1="440" y1="422" x2="500" y2="422" />
+              <text x="470" y="420" class="stairs-label" style="font-size:7px;">TANGGA</text>
+            </g>
+
+            <!-- Decorative Corridor Plants -->
+            <circle cx="215" cy="250" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
+            <circle cx="585" cy="250" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
+          </svg>
+        </div>
+
+        <!-- Floor 2 SVG -->
+        <div class="floor-map hidden" id="map-floor-2">
+          <svg viewBox="0 0 800 500" class="floor-svg">
+            <!-- Building Outer Shell -->
+            <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
+            
+            <!-- Corridors -->
+            <rect x="280" y="100" width="240" height="290" class="map-corridor" />
+            <rect x="50" y="280" width="700" height="60" class="map-corridor" />
+            
+            <!-- Ruang Rapat Singkarak -->
+            <g class="room-group" data-room-id="l2-rapat-singkarak">
+              <rect x="300" y="80" width="200" height="120" rx="12" class="room-path" />
+              <!-- Conference Table -->
+              <rect x="340" y="130" width="120" height="40" rx="20" fill="none" stroke="#cbd5e1" stroke-width="2" opacity="0.8" />
+              <!-- Chairs -->
+              <circle cx="360" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="385" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="410" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="435" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="360" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="385" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="410" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <circle cx="435" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
+              <text x="400" y="110" class="room-label">Ruang Rapat Losari</text>
+              <text x="400" y="195" class="room-category-label">Ruang Rapat</text>
+            </g>
+            
+            <!-- Biro Humas & Publikasi -->
+            <g class="room-group" data-room-id="l2-humas">
+              <rect x="50" y="80" width="230" height="260" rx="12" class="room-path" />
+              <!-- Podcast Studio Booth -->
+              <rect x="60" y="90" width="90" height="90" rx="8" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="2" opacity="0.8" />
+              <text x="105" y="140" fill="#94a3b8" font-size="8px" font-weight="700" text-anchor="middle">STUDIO PODCAST</text>
+              <!-- Humas Workstations -->
+              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
+                <rect x="170" y="95" width="35" height="20" rx="2" />
+                <rect x="170" y="125" width="35" height="20" rx="2" />
+                <rect x="170" y="240" width="35" height="20" rx="2" />
+                <rect x="170" y="270" width="35" height="20" rx="2" />
+              </g>
+              <text x="165" y="190" class="room-label">Divisi Pelatihan &</text>
+              <text x="165" y="208" class="room-label">Media Publikasi</text>
+              <text x="165" y="325" class="room-category-label">Kantor</text>
+            </g>
+            
+            <!-- Ditjen Aptika -->
+            <g class="room-group" data-room-id="l2-aptika">
+              <rect x="520" y="80" width="230" height="260" rx="12" class="room-path" />
+              <!-- Aptika Workstations -->
+              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
+                <!-- Cluster A -->
+                <rect x="540" y="95" width="35" height="20" rx="2" />
+                <rect x="540" y="125" width="35" height="20" rx="2" />
+                <!-- Cluster B -->
+                <rect x="695" y="95" width="35" height="20" rx="2" />
+                <rect x="695" y="125" width="35" height="20" rx="2" />
+                <!-- Cluster C -->
+                <rect x="540" y="240" width="35" height="20" rx="2" />
+                <rect x="540" y="270" width="35" height="20" rx="2" />
+                <!-- Cluster D -->
+                <rect x="695" y="240" width="35" height="20" rx="2" />
+                <rect x="695" y="270" width="35" height="20" rx="2" />
+              </g>
+              <text x="635" y="180" class="room-label">Tim Penelitian &</text>
+              <text x="635" y="198" class="room-label">Visualisasi Data</text>
+              <text x="635" y="325" class="room-category-label">Kantor</text>
+            </g>
+            
+            <!-- Pantry Lantai 2 -->
+            <g class="room-group" data-room-id="l2-pantry">
+              <rect x="340" y="350" width="120" height="90" rx="12" class="room-path" />
+              <!-- Counter detail -->
+              <rect x="350" y="355" width="100" height="15" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.7" />
+              <text x="400" y="395" class="room-label">Pantry</text>
+              <text x="400" y="415" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <!-- Elevators / Lift -->
+            <g class="elevator-group">
+              <rect x="300" y="210" width="60" height="55" rx="8" class="map-elevator" />
+              <line x1="300" y1="237" x2="360" y2="237" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <line x1="330" y1="210" x2="330" y2="265" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <text x="330" y="235" class="elevator-label" style="font-size: 8px;">LIFT</text>
+            </g>
+            
+            <!-- Stairs / Tangga -->
+            <g class="stairs-group">
+              <rect x="440" y="210" width="60" height="55" rx="8" class="map-stairs" />
+              <line x1="440" y1="218" x2="500" y2="218" />
+              <line x1="440" y1="226" x2="500" y2="226" />
+              <line x1="440" y1="234" x2="500" y2="234" />
+              <line x1="440" y1="242" x2="500" y2="242" />
+              <line x1="440" y1="250" x2="500" y2="250" />
+              <line x1="440" y1="258" x2="500" y2="258" />
+              <text x="470" y="255" class="stairs-label" style="font-size:7px;">TANGGA</text>
+            </g>
+
+            <!-- Decorative Corridor Plants -->
+            <circle cx="265" cy="310" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
+            <circle cx="535" cy="310" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
+          </svg>
+        </div>
+
+        <!-- Floor 3 SVG -->
+        <div class="floor-map hidden" id="map-floor-3">
+          <svg viewBox="0 0 800 500" class="floor-svg">
+            <!-- Building Outer Shell -->
+            <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
+            
+            <!-- Corridors -->
+            <rect x="280" y="100" width="240" height="290" class="map-corridor" />
+            <rect x="50" y="280" width="700" height="60" class="map-corridor" />
+            
+            <!-- NOC Room -->
+            <g class="room-group" data-room-id="l3-noc">
+              <rect x="300" y="80" width="200" height="120" rx="12" class="room-path" />
+              <!-- Detailed NOC Console (Giant Curved Table) -->
+              <path d="M 330,175 C 330,140 470,140 470,175" fill="none" stroke="#3b82f6" stroke-width="4" opacity="0.8" />
+              <!-- Video Wall Indicator Line on Top Wall -->
+              <line x1="330" y1="83" x2="470" y2="83" stroke="#cbd5e1" stroke-width="4" />
+              <text x="400" y="115" class="room-label">NOC Center BBLSDMP</text>
+              <text x="400" y="130" class="room-category-label">Layanan</text>
+            </g>
+            
+            <!-- Direktorat Keamanan Siber -->
+            <g class="room-group" data-room-id="l3-siber">
+              <rect x="50" y="80" width="230" height="260" rx="12" class="room-path" />
+              <!-- Siber Workstations -->
+              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
+                <rect x="70" y="95" width="35" height="20" rx="2" />
+                <rect x="70" y="125" width="35" height="20" rx="2" />
+                <rect x="70" y="240" width="35" height="20" rx="2" />
+                <rect x="70" y="270" width="35" height="20" rx="2" />
+                <rect x="220" y="95" width="35" height="20" rx="2" />
+                <rect x="220" y="125" width="35" height="20" rx="2" />
+              </g>
+              <text x="165" y="180" class="room-label">Infrastruktur TIK &</text>
+              <text x="165" y="198" class="room-label">Manajemen Resiko</text>
+              <text x="165" y="325" class="room-category-label">Kantor</text>
+            </g>
+            
+            <!-- PDN Hub -->
+            <g class="room-group" data-room-id="l3-pdn">
+              <rect x="520" y="80" width="230" height="260" rx="12" class="room-path" />
+              <!-- Detailed Server Cabinets (Racks) -->
+              <g opacity="0.8" stroke="#cbd5e1" stroke-width="1.5" fill="none">
+                <!-- Row A -->
+                <rect x="540" y="95" width="20" height="35" rx="1" />
+                <rect x="570" y="95" width="20" height="35" rx="1" />
+                <rect x="600" y="95" width="20" height="35" rx="1" />
+                <!-- Row B -->
+                <rect x="540" y="240" width="20" height="35" rx="1" />
+                <rect x="570" y="240" width="20" height="35" rx="1" />
+                <rect x="600" y="240" width="20" height="35" rx="1" />
+              </g>
+              <!-- Server room glass wall division -->
+              <line x1="645" y1="80" x2="645" y2="340" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3" />
+              <text x="635" y="175" class="room-label">Pusat Data &</text>
+              <text x="635" y="193" class="room-label">Server BBLSDMP</text>
+              <text x="635" y="325" class="room-category-label">Kantor</text>
+            </g>
+            
+            <!-- Pantry & Lounge Lantai 3 -->
+            <g class="room-group" data-room-id="l3-pantry">
+              <rect x="340" y="350" width="120" height="90" rx="12" class="room-path" />
+              <!-- Sofa outlines inside pantry lounge -->
+              <path d="M 350,420 L 350,430 L 400,430 L 400,420" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.7" />
+              <text x="400" y="390" class="room-label">Pantry & Lounge</text>
+              <text x="400" y="410" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <!-- Elevators / Lift -->
+              <rect x="440" y="210" width="60" height="55" rx="8" class="map-stairs" />
+              <line x1="440" y1="220" x2="500" y2="220" />
+              <line x1="440" y1="230" x2="500" y2="230" />
+              <line x1="440" y1="240" x2="500" y2="240" />
+              <line x1="440" y1="250" x2="500" y2="250" />
+              <text x="470" y="258" class="stairs-label">TANGGA</text>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Float Widget - Floor Changer -->
+      <div class="floor-selector-widget">
+        <button class="floor-btn" data-floor="3">L3</button>
+        <button class="floor-btn" data-floor="2">L2</button>
+        <button class="floor-btn active" data-floor="1">L1</button>
+      </div>
+
+      <!-- Float Widget - Zoom Controls -->
+      <div class="zoom-controls">
+        <button id="zoom-in-btn" title="Perbesar"><i data-lucide="plus"></i></button>
+        <button id="zoom-reset-btn" title="Reset Zoom"><i data-lucide="maximize-2"></i></button>
+        <button id="zoom-out-btn" title="Perkecil"><i data-lucide="minus"></i></button>
+      </div>
+    </section>
+
+    <!-- Side Panel / Card Sidebar (30% width) -->
+    <aside class="sidebar-panel">
+      
+      <!-- Tabs Navigation -->
+      <div class="sidebar-tabs">
+        <button class="tab-btn active" data-tab="details">
+          <i data-lucide="info"></i> Detail Ruangan
+        </button>
+        <button class="tab-btn" data-tab="companion">
+          <i data-lucide="building-2"></i> Info Kantor
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Room Details -->
+      <div class="tab-content active" id="tab-details">
+        
+        <!-- Welcome Card (Shown when no room is selected) -->
+        <div id="details-welcome" class="welcome-card">
+          <div class="welcome-icon-wrapper">
+            <i data-lucide="navigation" class="pulse-icon"></i>
+          </div>
+          <h3>Selamat Datang di DigiMap</h3>
+          <p>Silakan klik ruangan mana pun di peta kantor Komdigi atau gunakan pencarian di atas untuk melihat detail divisi, penanggung jawab, serta fasilitas yang ada di ruangan tersebut.</p>
+        </div>
+
+        <!-- Room Information Card (Hidden by default) -->
+        <div id="room-details-card" class="details-card hidden">
+          <!-- Room Info Header -->
+          <div class="room-details-header">
+            <div id="room-avatar" class="room-avatar-glow">
+              <i data-lucide="door-open"></i>
+            </div>
+            <div>
+              <span id="detail-category" class="badge">Kantor</span>
+              <h3 id="detail-name">Biro Humas & Publikasi</h3>
+            </div>
+          </div>
+
+          <!-- Room Visual Placeholder -->
+          <div class="room-visual" id="room-visual-box">
+             <div class="overlay-gradient"></div>
+             <span id="visual-floor-tag">Lantai 2</span>
+             <i data-lucide="image" class="visual-fallback-icon"></i>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Room Details Body -->
+          <div class="details-section">
+            <h4><i data-lucide="award"></i> Divisi / Bagian</h4>
+            <p id="detail-division" class="detail-value">Sekretariat Jenderal</p>
+          </div>
+
+          <div class="details-section">
+            <h4><i data-lucide="book-open"></i> Tugas Utama</h4>
+            <p id="detail-desc" class="detail-value text-justify">Bertanggung jawab penuh atas komunikasi publik kementerian...</p>
+          </div>
+
+          <!-- Facilities -->
+          <div class="details-section">
+            <h4><i data-lucide="layers"></i> Fasilitas Ruangan</h4>
+            <div id="detail-facilities" class="facilities-grid">
+              <!-- Facilities Tag elements will be added dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Staff / Karyawan -->
+          <div class="details-section">
+            <h4><i data-lucide="users"></i> Daftar Staf / Pejabat</h4>
+            <div id="detail-staf-list" class="staff-list">
+              <!-- Staff items will be added dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="details-actions">
+            <button id="btn-share-loc" class="action-btn primary-action">
+              <i data-lucide="share-2"></i> Bagikan Lokasi
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Info Kantor -->
+      <div class="tab-content hidden" id="tab-companion">
+        
+        <!-- Companion Welcome -->
+        <div class="companion-header">
+          <h3><i data-lucide="building"></i> Informasi & Layanan Kantor</h3>
+          <p>Visi misi, struktur pejabat, media sosial, serta layanan penting di BBLSDMP Komdigi Makassar.</p>
+        </div>
+
+        <!-- Section: Visi & Misi -->
+        <div class="companion-section">
+          <h4><i data-lucide="target"></i> Visi & Misi BBLSDMP</h4>
+          <div style="background: rgba(15, 23, 42, 0.02); border: 1px solid var(--border-glass-bright); padding: 14px; border-radius: 8px; font-size: 0.8rem; line-height: 1.5; color: var(--text-light);">
+            <div style="margin-bottom: 10px;">
+              <strong style="color: var(--accent-blue);">Visi:</strong>
+              <p style="text-align: justify; margin-top: 3px; font-size: 0.76rem; color: var(--text-gray);">Mendukung terwujudnya Indonesia Maju yang berdaulat, mandiri, dan berkepribadian berlandaskan gotong royong.</p>
+            </div>
+            <div>
+              <strong style="color: var(--accent-blue);">Misi:</strong>
+              <ul style="margin-top: 4px; padding-left: 15px; font-size: 0.74rem; color: var(--text-gray); display: flex; flex-direction: column; gap: 4px; text-align: justify;">
+                <li>Meningkatkan kualitas SDM digital Indonesia melalui pelatihan sertifikasi & literasi digital.</li>
+                <li>Mendorong ekosistem aplikasi & riset TIK nasional yang produktif dan berdaya saing.</li>
+                <li>Mempercepat pemerataan akses informasi dan talenta digital di wilayah kerja Indonesia Timur.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Struktur Pejabat -->
+        <div class="companion-section">
+          <h4><i data-lucide="network"></i> Struktur Pejabat Balai</h4>
+          <div class="official-structure-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 380px; overflow-y: auto; padding-right: 4px;">
+            
+            <!-- PIMPINAN UTAMA -->
+            <div style="border-left: 3px solid var(--accent-blue); padding-left: 8px; margin-bottom: 2px;">
+              <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 0.5px;">Pimpinan</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">BS</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Baso Saleh</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Kepala BBLSDMP Makassar</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">T</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Tasmil</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Kepala Bagian Umum</div>
+              </div>
+            </div>
+
+            <!-- KOORDINATOR PELATIHAN -->
+            <div style="border-left: 3px solid var(--accent-gold); padding-left: 8px; margin-top: 6px; margin-bottom: 2px;">
+              <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--accent-gold); letter-spacing: 0.5px;">Divisi Pelatihan</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 159, 0, 0.08); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">FR</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Faisal Risani</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Aparatur Digital</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 159, 0, 0.08); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">H</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Herman</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Talenta Digital</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 159, 0, 0.08); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">T</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Tasmil</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Keterampilan Digital Dasar</div>
+              </div>
+            </div>
+
+            <!-- ADMINISTRASI & TIK -->
+            <div style="border-left: 3px solid var(--accent-cyan); padding-left: 8px; margin-top: 6px; margin-bottom: 2px;">
+              <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--accent-cyan); letter-spacing: 0.5px;">Administrasi, TIK & Media</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">FM</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Firdaus Mashyur</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Perencanaan</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">OO</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Olga Olivia</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Keuangan dan Aset</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">AA</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Aswar Azis</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Kepegawaian</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">B</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Bahrawi</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Manajemen Resiko</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">NA</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Nur Alam</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Pusdatin TIK Visualisasi Data</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">RH</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Rudi Hermayadi</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Pusdatin TIK Infrastruktur</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; background: white; border: 1px solid rgba(0, 0, 0, 0.04); padding: 8px 12px; border-radius: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">SH</div>
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Solehuddin Hasdin</div>
+                <div style="font-size: 0.68rem; color: var(--text-gray);">Media Publikasi</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section: Media Sosial Resmi -->
+        <div class="companion-section">
+          <h4><i data-lucide="share-2"></i> Media Sosial Resmi</h4>
+          <div class="social-links-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+            <a href="https://bbpsdmpkominfo.id" target="_blank" class="link-card" style="font-size: 0.72rem; padding: 8px 10px;">
+              <i data-lucide="globe"></i> Website
+            </a>
+            <a href="https://www.instagram.com/bbpsdmp.makassar" target="_blank" class="link-card" style="font-size: 0.72rem; padding: 8px 10px;">
+              <i data-lucide="instagram"></i> Instagram
+            </a>
+            <a href="https://www.youtube.com/@bbpsdmp.makassar" target="_blank" class="link-card" style="font-size: 0.72rem; padding: 8px 10px;">
+              <i data-lucide="youtube"></i> YouTube
+            </a>
+            <a href="https://www.facebook.com/bbpsdmp.makassar" target="_blank" class="link-card" style="font-size: 0.72rem; padding: 8px 10px;">
+              <i data-lucide="facebook"></i> Facebook
+            </a>
+          </div>
+        </div>
+
+        <!-- Section: Wi-Fi Akses -->
+        <div class="companion-section">
+          <h4><i data-lucide="wifi"></i> Akses Wi-Fi Kantor</h4>
+          <div class="wifi-info-card" style="background: rgba(15, 23, 42, 0.02); border: 1px solid var(--border-glass-bright); padding: 12px; border-radius: 8px; font-size: 0.8rem; line-height: 1.5; color: var(--text-light);">
+            <div style="margin-bottom: 5px;"><strong>SSID:</strong> <span style="color: var(--accent-blue); font-weight: 600;">Komdigi-Karyawan</span></div>
+            <div style="margin-bottom: 5px;"><strong>Metode:</strong> <span>WPA2 Enterprise</span></div>
+            <div><strong>Cara Akses:</strong> <span style="color: var(--text-gray);">Daftarkan MAC Address laptop Anda ke operator NOC di Lantai 3 melalui persetujuan atasan/mentor.</span></div>
+          </div>
+        </div>
+
+        <!-- Section: Quick Contacts -->
+        <div class="companion-section">
+          <h4><i data-lucide="phone"></i> Kontak Cepat Internal</h4>
+          <div id="contacts-container" class="contacts-list">
+            <!-- Contacts will be populated from data.js -->
+          </div>
+        </div>
+
+        <!-- Section: FAQs -->
+        <div class="companion-section">
+          <h4><i data-lucide="help-circle"></i> Tanya & Jawab Umum (FAQ)</h4>
+          <div id="faq-container" class="faq-accordion">
+            <!-- FAQs will be populated from data.js -->
+          </div>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </main>
+  </div>
+
+  <!-- Page 2: Intern Portal Page (Halaman Informasi Anak Magang) -->
+  <div id="page-intern" class="page-container hidden">
+    <main class="intern-dashboard">
+      
+      <!-- Left Column: Informasi Peraturan & Tata Tertib -->
+      <section class="intern-main-card">
+        <div class="intern-card-header">
+          <div class="header-title-group">
+            <div class="intern-icon-badge">
+              <i data-lucide="graduation-cap"></i>
+            </div>
+            <div>
+              <h2>Portal Informasi Mahasiswa Magang</h2>
+              <p>Panduan resmi mengenai peraturan, tata tertib, dan waktu operasional magang di BBLSDMP Komdigi Makassar.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Hari Kerja & Jam Operasional -->
+        <div class="intern-info-section" style="margin-bottom: 25px;">
+          <h3 style="font-family: var(--font-header); font-size: 1.05rem; color: #0f172a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="calendar-days" style="color: var(--accent-blue);"></i> Hari Kerja & Jam Operasional
+          </h3>
+          <div class="schedule-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+            
+            <div class="schedule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-gray); font-weight: 700; margin-bottom: 5px;">HARI KERJA</div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--accent-blue); font-family: var(--font-header);">Senin - Jumat</div>
+              <div style="font-size: 0.76rem; color: var(--text-gray); margin-top: 5px;">Sabtu, Minggu & Hari Libur Nasional: Libur</div>
+            </div>
+
+            <div class="schedule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-gray); font-weight: 700; margin-bottom: 5px;">JAM MASUK & PULANG</div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--accent-blue); font-family: var(--font-header);">07.30 - 16.00 WIB</div>
+              <div style="font-size: 0.76rem; color: var(--text-gray); margin-top: 5px;">Batas toleransi keterlambatan: 15 menit</div>
+            </div>
+
+            <div class="schedule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-gray); font-weight: 700; margin-bottom: 5px;">JAM ISTIRAHAT</div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--accent-blue); font-family: var(--font-header);">12.00 - 13.00 WIB</div>
+              <div style="font-size: 0.76rem; color: var(--text-gray); margin-top: 5px;">Khusus Hari Jumat: 11.30 - 13.00 WIB</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="divider" style="margin: 15px 0 25px;"></div>
+
+        <!-- Section: Peraturan & Tata Tertib -->
+        <div class="intern-info-section">
+          <h3 style="font-family: var(--font-header); font-size: 1.05rem; color: #0f172a; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="shield-check" style="color: var(--accent-blue);"></i> Aturan & Tata Tertib Magang
+          </h3>
+          <div class="rules-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            
+            <div class="rule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; display: flex; gap: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="color: var(--accent-blue);"><i data-lucide="shirt" style="width: 24px; height: 24px;"></i></div>
+              <div>
+                <h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; font-family: var(--font-header); margin-bottom: 5px;">1. Peraturan Pakaian (Dress Code)</h4>
+                <p style="font-size: 0.78rem; color: var(--text-gray); line-height: 1.5; text-align: justify;">
+                  Wajib mengenakan kemeja berkerah formal, celana bahan/rok sopan, serta bersepatu tertutup. <strong>Dilarang keras</strong> menggunakan kaos oblong (*T-Shirt*) tanpa kerah, celana robek, dan sandal di lingkungan kantor. Hari Kamis wajib memakai Batik.
+                </p>
+              </div>
+            </div>
+
+            <div class="rule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; display: flex; gap: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="color: var(--accent-blue);"><i data-lucide="contact-2" style="width: 24px; height: 24px;"></i></div>
+              <div>
+                <h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; font-family: var(--font-header); margin-bottom: 5px;">2. Penggunaan Tanda Pengenal</h4>
+                <p style="font-size: 0.78rem; color: var(--text-gray); line-height: 1.5; text-align: justify;">
+                  ID Card / Tanda Pengenal Anak Magang yang diberikan oleh Biro Kepegawaian wajib dipakai dan dikalungkan selama berada di dalam gedung Komdigi demi keamanan siber dan fisik kantor.
+                </p>
+              </div>
+            </div>
+
+            <div class="rule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; display: flex; gap: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="color: var(--accent-blue);"><i data-lucide="lock" style="width: 24px; height: 24px;"></i></div>
+              <div>
+                <h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; font-family: var(--font-header); margin-bottom: 5px;">3. Keamanan Data & Informasi</h4>
+                <p style="font-size: 0.78rem; color: var(--text-gray); line-height: 1.5; text-align: justify;">
+                  Menjaga kerahasiaan dokumen negara dan data sistem kementerian. Dilarang menyebarkan *source code*, dokumentasi internal, atau konfigurasi jaringan tanpa persetujuan mentor pembimbing.
+                </p>
+              </div>
+            </div>
+
+            <div class="rule-card" style="background: white; border: 1px solid rgba(0,0,0,0.04); padding: 16px; border-radius: 12px; display: flex; gap: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.01);">
+              <div style="color: var(--accent-blue);"><i data-lucide="clipboard-check" style="width: 24px; height: 24px;"></i></div>
+              <div>
+                <h4 style="font-size: 0.88rem; font-weight: 700; color: #0f172a; font-family: var(--font-header); margin-bottom: 5px;">4. Absensi & Laporan Logbook</h4>
+                <p style="font-size: 0.78rem; color: var(--text-gray); line-height: 1.5; text-align: justify;">
+                  Kehadiran wajib dilaporkan harian melalui portal absensi internal. Setiap akhir pekan, mahasiswa wajib menyusun *logbook* mingguan untuk diverifikasi dan ditandatangani oleh mentor pembimbing masing-masing.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Penanggung Jawab & Kontak Cepat -->
+      <aside class="intern-sidebar-card">
+        
+        <!-- Section: Penanggung Jawab (PIC) -->
+        <div class="intern-widget">
+          <h4><i data-lucide="user-check"></i> Penanggung Jawab Program</h4>
+          <div class="pic-list" style="display: flex; flex-direction: column; gap: 12px;">
+            
+            <div class="pic-card" style="display: flex; align-items: center; gap: 12px; background: white; border: 1px solid rgba(0,0,0,0.04); padding: 10px; border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.01);">
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.88rem;">T</div>
+              <div>
+                <h5 style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Tasmil</h5>
+                <p style="font-size: 0.7rem; color: var(--text-gray);">Kepala Bagian Umum (Lantai 1)</p>
+              </div>
+            </div>
+
+            <div class="pic-card" style="display: flex; align-items: center; gap: 12px; background: white; border: 1px solid rgba(0,0,0,0.04); padding: 10px; border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.01);">
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.88rem;">AA</div>
+              <div>
+                <h5 style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Aswar Azis</h5>
+                <p style="font-size: 0.7rem; color: var(--text-gray);">Koordinator Kepegawaian (Lantai 1)</p>
+              </div>
+            </div>
+
+            <div class="pic-card" style="display: flex; align-items: center; gap: 12px; background: white; border: 1px solid rgba(0,0,0,0.04); padding: 10px; border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.01);">
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(0, 77, 230, 0.08); color: var(--accent-blue); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.88rem;">SA</div>
+              <div>
+                <h5 style="font-size: 0.8rem; font-weight: 700; color: #0f172a;">Siti Aisyah, S.Sos.</h5>
+                <p style="font-size: 0.7rem; color: var(--text-gray);">Administrasi & Absen Magang (Lantai 1)</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section: Siapa yang Dapat Dihubungi -->
+        <div class="intern-widget">
+          <h4><i data-lucide="phone"></i> Hubungi Kontak Penting</h4>
+          <div class="contacts-list" style="display: flex; flex-direction: column; gap: 8px;">
+            
+            <div class="contact-card">
+              <div>
+                <div class="contact-name">Bagian Kepegawaian & TU</div>
+                <div class="contact-role">Urusan Administrasi & Absen</div>
+              </div>
+              <a href="tel:081234567890" class="contact-action">
+                <i data-lucide="phone-call"></i> Panggil
+              </a>
+            </div>
+
+            <div class="contact-card">
+              <div>
+                <div class="contact-name">NOC Center Makassar</div>
+                <div class="contact-role">Urusan Wi-Fi & Jaringan Lokal</div>
+              </div>
+              <a href="tel:114" class="contact-action">
+                <i data-lucide="phone-call"></i> Panggil
+              </a>
+            </div>
+
+            <div class="contact-card">
+              <div>
+                <div class="contact-name">Helpdesk IT BBPSDMP</div>
+                <div class="contact-role">Masalah Hardware & Software</div>
+              </div>
+              <a href="tel:085798765432" class="contact-action">
+                <i data-lucide="phone-call"></i> Panggil
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tautan Luar -->
+        <div class="intern-widget">
+          <h4><i data-lucide="external-link"></i> Akses Cepat Tautan</h4>
+          <div class="quick-links-grid">
+            <a href="https://bpsdm.komdigi.go.id/upt/makassar/" target="_blank" class="link-card">
+              <i data-lucide="globe"></i> Website BBLSDMP Makassar
+            </a>
+            <a href="https://bpsdm.kominfo.go.id" target="_blank" class="link-card">
+              <i data-lucide="user-check"></i> Portal BPSDM Komdigi
+            </a>
+            <a href="https://sdm.kominfo.go.id" target="_blank" class="link-card">
+              <i data-lucide="file-text"></i> Portal Kepegawaian SDM
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+  </div>
+  <!-- Toast Notification System -->
+  <div id="toast-notification" class="toast hidden">
+    <i data-lucide="check-circle" class="toast-icon"></i>
+    <span id="toast-message">Tautan lokasi disalin ke clipboard!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
