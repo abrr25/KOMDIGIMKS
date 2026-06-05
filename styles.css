@@ -1,39 +1,29 @@
-/* 
- * DigiMap Komdigi - System Styles
- * Theme: Bright Corporate & Glassmorphism (Light Mode)
- * Branding Colors: Komdigi Blue (#004de6) & Komdigi Gold (#ff9f00)
- */
 
 :root {
-  /* Bright Color Palette */
-  --bg-main: hsl(210, 40%, 96%); /* Light soft blue-grey */
+  
+  --bg-main: hsl(210, 40%, 96%); 
   --bg-main-light: hsl(0, 0%, 100%);
   
-  /* Glassmorphic Light Surface */
   --card-glass: rgba(255, 255, 255, 0.75);
   --card-glass-hover: rgba(255, 255, 255, 0.90);
   
-  /* Branding Colors */
-  --accent-blue: hsl(220, 100%, 45%); /* Official Komdigi Blue */
-  --accent-gold: hsl(40, 100%, 48%);  /* Official Komdigi Gold Wave */
-  --accent-cyan: hsl(197, 95%, 43%);  /* Light Cyan */
-  --accent-emerald: hsl(142, 70%, 35%); /* Normal Success Green */
-  --accent-amber: hsl(38, 92%, 45%);   /* Warning Amber */
+  --accent-blue: hsl(220, 100%, 45%); 
+  --accent-gold: hsl(40, 100%, 48%);  
+  --accent-cyan: hsl(197, 95%, 43%);  
+  --accent-emerald: hsl(142, 70%, 35%); 
+  --accent-amber: hsl(38, 92%, 45%);   
   --border-glass: rgba(15, 23, 42, 0.08);
   --border-glass-bright: rgba(15, 23, 42, 0.15);
   
-  /* Text for Light Mode */
-  --text-white: #0f172a; /* Main text is now Dark Slate */
-  --text-light: #1e293b; /* Secondary text is dark navy */
-  --text-gray: #64748b;  /* Muted descriptions */
-  --text-dark: #cbd5e1;  /* Border dividers / inactive state */
+  --text-white: #0f172a; 
+  --text-light: #1e293b; 
+  --text-gray: #64748b;  
+  --text-dark: #cbd5e1;  
   
-  /* Fonts */
   --font-header: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 
-/* Global Reset & Base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -49,19 +39,17 @@ body {
   position: relative;
 }
 
-/* Utility Classes */
 .hidden {
   display: none !important;
 }
 
-/* Ambient Background Glows (Lighter, soft pastels) */
 .bg-glow {
   position: absolute;
   border-radius: 50%;
   filter: blur(160px);
   z-index: -1;
   pointer-events: none;
-  opacity: 0.15; /* Reduced opacity for light background */
+  opacity: 0.15; 
 }
 
 .bg-glow-1 {
@@ -80,7 +68,6 @@ body {
   right: -100px;
 }
 
-/* Header Styles */
 .app-header {
   height: 75px;
   display: flex;
@@ -130,7 +117,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Search Container & Suggestion Box */
 .search-container {
   width: 420px;
   position: relative;
@@ -190,7 +176,6 @@ body {
   color: #0f172a;
 }
 
-/* Suggestion Dropdown (Bright Theme) */
 .suggestions-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -261,7 +246,6 @@ body {
   font-size: 0.85rem;
 }
 
-/* Real-time Clock Widget */
 .clock-widget {
   display: flex;
   align-items: center;
@@ -281,7 +265,6 @@ body {
   height: 16px;
 }
 
-/* Filters Bar Styles */
 .filters-bar {
   height: 48px;
   background: rgba(255, 255, 255, 0.5);
@@ -336,13 +319,11 @@ body {
   box-shadow: 0 2px 8px rgba(0, 77, 230, 0.12);
 }
 
-/* Main Workspace Grid */
 .app-main {
   height: calc(100vh - 123px);
   display: flex;
 }
 
-/* Map Viewport Area (Left) */
 .map-viewport {
   flex: 1;
   height: 100%;
@@ -355,7 +336,6 @@ body {
   overflow: hidden;
 }
 
-/* Watermark Background Logo */
 .map-watermark {
   position: absolute;
   top: 50%;
@@ -364,7 +344,7 @@ body {
   width: 500px;
   height: 500px;
   color: var(--accent-blue);
-  opacity: 0.045; /* Sangat tipis dan elegan */
+  opacity: 0.045; 
   pointer-events: none;
   z-index: 1;
 }
@@ -374,7 +354,6 @@ body {
   height: 100%;
 }
 
-/* Floor Banner Overlay */
 .floor-banner {
   position: absolute;
   top: 20px;
@@ -397,7 +376,6 @@ body {
   margin-top: 3px;
 }
 
-/* Map SVG Display Container */
 .map-container {
   width: 90%;
   max-width: 950px;
@@ -406,7 +384,7 @@ body {
   transition: transform 0.1s ease-out;
   transform-origin: center center;
   position: relative;
-  z-index: 2; /* Di atas watermark */
+  z-index: 2; 
 }
 
 .floor-map {
@@ -426,9 +404,8 @@ body {
   height: 100%;
 }
 
-/* Interactive SVG Styling (Bright Theme) */
 .map-shell {
-  fill: #ffffff; /* Solid White building floor */
+  fill: #ffffff; 
   stroke: #cbd5e1;
   stroke-width: 2px;
   filter: drop-shadow(0 10px 25px rgba(15, 23, 42, 0.04));
@@ -522,7 +499,6 @@ body {
   text-anchor: middle;
 }
 
-/* Floor Changer Widget (Floated) */
 .floor-selector-widget {
   position: absolute;
   right: 25px;
@@ -563,7 +539,6 @@ body {
   box-shadow: 0 4px 12px rgba(0, 77, 230, 0.35);
 }
 
-/* Zoom Widget (Floated) */
 .zoom-controls {
   position: absolute;
   left: 20px;
@@ -601,7 +576,6 @@ body {
   color: var(--accent-blue);
 }
 
-/* Sidebar Panel Container (Right 30%) */
 .sidebar-panel {
   width: 380px;
   height: 100%;
@@ -615,7 +589,6 @@ body {
   position: relative;
 }
 
-/* Sidebar Tab Headers */
 .sidebar-tabs {
   display: flex;
   height: 52px;
@@ -656,7 +629,6 @@ body {
   background: rgba(0, 77, 230, 0.03);
 }
 
-/* Tab Content Areas */
 .tab-content {
   flex: 1;
   overflow-y: auto;
@@ -669,7 +641,6 @@ body {
   display: none;
 }
 
-/* Welcome Card style */
 .welcome-card {
   margin: auto;
   text-align: center;
@@ -711,7 +682,6 @@ body {
   line-height: 1.6;
 }
 
-/* Room Details Layout */
 .details-card {
   display: flex;
   flex-direction: column;
@@ -763,7 +733,6 @@ body {
   border: 1px solid rgba(0, 77, 230, 0.2);
 }
 
-/* Room Visual Box (Bright Accent Placeholder) */
 .room-visual {
   height: 140px;
   border-radius: 12px;
@@ -808,7 +777,6 @@ body {
   background: var(--border-glass);
 }
 
-/* Details Section Details */
 .details-section h4 {
   font-family: var(--font-header);
   font-size: 0.8rem;
@@ -838,7 +806,6 @@ body {
   text-align: justify;
 }
 
-/* Facilities Grid Layout */
 .facilities-grid {
   display: flex;
   flex-wrap: wrap;
@@ -858,7 +825,6 @@ body {
   gap: 4px;
 }
 
-/* Staff Layout */
 .staff-list {
   display: flex;
   flex-direction: column;
@@ -900,7 +866,6 @@ body {
   color: var(--text-gray);
 }
 
-/* Action Buttons Drawer */
 .details-actions {
   margin-top: 10px;
 }
@@ -933,7 +898,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Magang Companion Tab Layout */
 .companion-header {
   margin-bottom: 20px;
 }
@@ -989,7 +953,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Checklist Layout */
 .checklist-list {
   display: flex;
   flex-direction: column;
@@ -1036,7 +999,6 @@ body {
   background: rgba(16, 185, 129, 0.04);
 }
 
-/* Contacts Layout */
 .contacts-list {
   display: flex;
   flex-direction: column;
@@ -1079,7 +1041,6 @@ body {
   color: var(--accent-cyan);
 }
 
-/* FAQ Accordion Layout */
 .faq-accordion {
   display: flex;
   flex-direction: column;
@@ -1142,7 +1103,6 @@ body {
   max-height: 150px;
 }
 
-/* Toast Message Style */
 .toast {
   position: fixed;
   bottom: 25px;
@@ -1176,7 +1136,6 @@ body {
   font-weight: 600;
 }
 
-/* Keyframe Animations */
 @keyframes svg-dash-pulse {
   to {
     stroke-dashoffset: -20;
@@ -1210,7 +1169,6 @@ body {
   }
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -1228,7 +1186,6 @@ body {
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* Page Containers Switch States */
 .page-container {
   display: none;
   width: 100%;
@@ -1244,7 +1201,6 @@ body {
   display: none !important;
 }
 
-/* Main Navigation Bar in Header */
 .main-nav {
   display: flex;
   gap: 15px;
@@ -1282,7 +1238,6 @@ body {
   box-shadow: inset 0 1px 2px rgba(0, 77, 230, 0.05);
 }
 
-/* Page 2: Intern Dashboard Layout */
 .intern-dashboard {
   flex: 1;
   height: 100%;
@@ -1317,7 +1272,6 @@ body {
   flex-shrink: 0;
 }
 
-/* Card Header info */
 .intern-card-header {
   margin-bottom: 20px;
 }
@@ -1357,8 +1311,6 @@ body {
   margin-top: 2px;
 }
 
-
-
 .intern-widget {
   background: var(--card-glass);
   border: 1px solid var(--border-glass);
@@ -1391,9 +1343,6 @@ body {
   color: var(--accent-blue);
 }
 
-
-
-/* Quick Links Grid */
 .quick-links-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1429,7 +1378,6 @@ body {
   color: var(--accent-blue);
 }
 
-/* Responsive Layout for Intern Dashboard (Screens <= 900px) */
 @media (max-width: 900px) {
   .intern-dashboard {
     flex-direction: column;
@@ -1453,7 +1401,6 @@ body {
   }
 }
 
-/* Splash Screen Styling */
 .splash-screen {
   position: fixed;
   inset: 0;
@@ -1572,7 +1519,6 @@ body {
   pointer-events: none;
 }
 
-/* Splash Keyframe Animations */
 @keyframes splash-zoom-in {
   0% {
     opacity: 0;

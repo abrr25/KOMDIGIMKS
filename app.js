@@ -1,10 +1,6 @@
-/**
- * GidiMap Komdigi - Application Controller
- * Mengatur interaksi peta, pencarian, detail ruangan, dan onboarding magang.
- */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // === 0. SPLASH SCREEN (WELCOME SCREEN) ===
+  
   const splash = document.getElementById("splash-screen");
   if (splash) {
     setTimeout(() => {
@@ -15,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   }
 
-  // === STATE & VARIABEL GLOBAL ===
   let currentFloor = 1;
   let selectedRoomId = null;
   let zoomScale = 1;
@@ -23,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxZoom = 2.5;
   const minZoom = 0.7;
 
-  // Cache DOM Elements
   const searchInput = document.getElementById("search-input");
   const clearSearchBtn = document.getElementById("clear-search-btn");
   const searchSuggestions = document.getElementById("search-suggestions");
@@ -34,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailsCard = document.getElementById("room-details-card");
   const zoomContainer = document.getElementById("zoom-container");
   
-  // Detail Panel Fields
   const detailCategory = document.getElementById("detail-category");
   const detailName = document.getElementById("detail-name");
   const detailDivision = document.getElementById("detail-division");
@@ -45,14 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const visualFloorTag = document.getElementById("visual-floor-tag");
   const roomVisualBox = document.getElementById("room-visual-box");
 
-  // Onboarding containers
   const contactsContainer = document.getElementById("contacts-container");
   const faqContainer = document.getElementById("faq-container");
 
-  // Inisialisasi Ikon Lucide
   lucide.createIcons();
 
-  // === INITIALIZATION ===
   initClock();
   initOnboardingHub();
   registerMapEvents();
@@ -64,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
   registerPageSwitcher();
   checkDeepLink();
 
-  // === 1. DIGITAL CLOCK ===
   function initClock() {
     function updateTime() {
       const now = new Date();
@@ -80,12 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateTime, 1000);
   }
 
-  // === 2. MAP NAVIGATION (FLOORS & INTERACTION) ===
   function registerMapEvents() {
     const roomGroups = document.querySelectorAll(".room-group");
     
     roomGroups.forEach(group => {
-      // Event Klik Ruangan
+      
       group.addEventListener("click", () => {
         const roomId = group.getAttribute("data-room-id");
         selectRoom(roomId);
@@ -107,13 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function switchFloor(floorNum) {
     if (currentFloor === floorNum) return;
     
-    // Reset room selection when changing floors
     clearActiveRoom();
     
-    // Update State
     currentFloor = floorNum;
     
-    // Update UI Switcher Buttons
     document.querySelectorAll(".floor-btn").forEach(btn => {
       const btnFloor = parseInt(btn.getAttribute("data-floor"));
       if (btnFloor === floorNum) {
@@ -123,14 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Update Floor Banner Title & Description
     const floorData = DIGIMAP_DATA.floors.find(f => f.id === floorNum);
     if (floorData) {
       currentFloorTitle.textContent = floorData.name;
       currentFloorDesc.textContent = floorData.description;
     }
 
-    // Toggle Visible SVGs
     document.querySelectorAll(".floor-map").forEach(map => {
       const mapId = map.getAttribute("id");
       if (mapId === `map-floor-${floorNum}`) {
@@ -142,11 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Reset Zoom view of the new floor
     resetZoom();
   }
 
-  // === 3. ZOOM CONTROLLER ===
   function registerZoomControls() {
     document.getElementById("zoom-in-btn").addEventListener("click", () => adjustZoom(zoomStep));
     document.getElementById("zoom-out-btn").addEventListener("click", () => adjustZoom(-zoomStep));
@@ -167,23 +148,20 @@ document.addEventListener("DOMContentLoaded", () => {
     zoomContainer.style.transform = `scale(${zoomScale})`;
   }
 
-  // === 4. DETAIL PANEL POPULATOR ===
   function selectRoom(roomId, triggerFloorSwitch = false) {
-    // Cari data ruangan
+    
     const room = DIGIMAP_DATA.rooms.find(r => r.id === roomId);
     if (!room) return;
 
-    // Switch floor if necessary
     if (triggerFloorSwitch && room.floor !== currentFloor) {
       switchFloor(room.floor);
     }
 
-    // Set Active class di Peta SVG
     clearActiveRoom();
     const svgRoom = document.querySelector(`.room-group[data-room-id="${roomId}"]`);
     if (svgRoom) {
       svgRoom.classList.add("active-room");
-      // Add dynamic glow animation trigger
+      
       svgRoom.classList.add("pulse-highlight");
       setTimeout(() => {
         svgRoom.classList.remove("pulse-highlight");
@@ -192,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     selectedRoomId = roomId;
 
-    // Update Detail Card Fields
     detailCategory.textContent = room.category;
     detailCategory.className = `badge category-${room.category.toLowerCase()}`;
     detailName.textContent = room.name;
@@ -200,10 +177,8 @@ document.addEventListener("DOMContentLoaded", () => {
     detailDesc.textContent = room.description;
     visualFloorTag.textContent = `Lantai ${room.floor}`;
 
-    // Apply custom background gradient based on category for visual aesthetics
     applyCategoryGradient(room.category);
 
-    // Populate Facilities
     detailFacilities.innerHTML = "";
     if (room.facilities.length > 0) {
       room.facilities.forEach(fac => {
@@ -223,14 +198,12 @@ document.addEventListener("DOMContentLoaded", () => {
       detailFacilities.innerHTML = `<span class="facility-tag"><i data-lucide="info"></i> Standar</span>`;
     }
 
-    // Populate Staf List
     detailStafList.innerHTML = "";
     if (room.staf.length > 0) {
       room.staf.forEach(person => {
         const item = document.createElement("div");
         item.className = "staff-item";
         
-        // Generate Initials for Avatar
         const initials = person.name.split(" ").map(n => n[0]).slice(0, 2).join("");
 
         item.innerHTML = `
@@ -246,14 +219,11 @@ document.addEventListener("DOMContentLoaded", () => {
       detailStafList.innerHTML = `<div class="no-suggestions">Tidak ada staf khusus di ruangan ini (Ruang Publik/Fasilitas Umum)</div>`;
     }
 
-    // Tampilkan Card & Sembunyikan Welcome
     welcomeCard.classList.add("hidden");
     detailsCard.classList.remove("hidden");
 
-    // Pastikan Tab Detail Aktif
     switchTab("details");
     
-    // Re-create icons for newly added elements
     lucide.createIcons();
   }
 
@@ -280,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
     roomVisualBox.style.background = gradient;
   }
 
-  // === 5. SEARCH & AUTO SUGGEST ===
   function registerSearchEvents() {
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase().trim();
@@ -301,14 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
       searchInput.focus();
     });
 
-    // Hide suggestions dropdown on click outside or when clicking a suggestion
     document.addEventListener("click", (e) => {
       if (e.target !== searchInput) {
         searchSuggestions.classList.add("hidden");
       }
     });
 
-    // Show suggestions again on input focus if there is query
     searchInput.addEventListener("focus", () => {
       if (searchInput.value.trim().length > 0) {
         searchSuggestions.classList.remove("hidden");
@@ -320,14 +287,12 @@ document.addEventListener("DOMContentLoaded", () => {
     searchSuggestions.innerHTML = "";
     const results = [];
 
-    // Search Rooms by Name, Category or Division
     DIGIMAP_DATA.rooms.forEach(room => {
       let score = 0;
       if (room.name.toLowerCase().includes(query)) score += 10;
       if (room.division.toLowerCase().includes(query)) score += 5;
       if (room.category.toLowerCase().includes(query)) score += 3;
       
-      // Search Staf inside rooms
       const matchingStaff = room.staf.filter(s => s.name.toLowerCase().includes(query));
       if (matchingStaff.length > 0) {
         score += matchingStaff.length * 8;
@@ -338,10 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Sort results by search score
     results.sort((a, b) => b.score - a.score);
 
-    // Limit to top 5 results
     const topResults = results.slice(0, 5);
 
     if (topResults.length > 0) {
@@ -383,13 +346,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // === 6. QUICK FILTER TAGS ===
   function registerFilterTags() {
     const filterTags = document.querySelectorAll(".filter-tag");
     
     filterTags.forEach(tag => {
       tag.addEventListener("click", () => {
-        // Toggle Active
+        
         filterTags.forEach(t => t.classList.remove("active"));
         tag.classList.add("active");
 
@@ -412,13 +374,12 @@ document.addEventListener("DOMContentLoaded", () => {
         group.style.opacity = "1";
         group.querySelector(".room-path").style.stroke = "";
       } else {
-        // Dim rooms not matching filter
+        
         group.style.opacity = "0.2";
       }
     });
   }
 
-  // === 7. SIDEBAR TABS ===
   function registerTabs() {
     const tabButtons = document.querySelectorAll(".tab-btn");
     
@@ -450,9 +411,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === 8. OFFICE INFO (INFO KANTOR) HUB ===
   function initOnboardingHub() {
-    // Populate Contacts
+    
     contactsContainer.innerHTML = "";
     DIGIMAP_DATA.onboarding.contacts.forEach(contact => {
       const card = document.createElement("div");
@@ -470,7 +430,6 @@ document.addEventListener("DOMContentLoaded", () => {
       contactsContainer.appendChild(card);
     });
 
-    // Populate FAQs
     faqContainer.innerHTML = "";
     DIGIMAP_DATA.onboarding.faq.forEach((faq, index) => {
       const item = document.createElement("div");
@@ -485,12 +444,10 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      // FAQ accordion toggle logic
       const btn = item.querySelector(".faq-question");
       btn.addEventListener("click", () => {
         const isActive = item.classList.contains("active");
         
-        // Collapse all others
         document.querySelectorAll(".faq-item").forEach(otherItem => {
           otherItem.classList.remove("active");
         });
@@ -506,7 +463,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
   }
 
-  // === 9. MAIN NAVIGATION SWITCHER ===
   function registerPageSwitcher() {
     const navItems = document.querySelectorAll(".nav-item");
     
@@ -514,11 +470,9 @@ document.addEventListener("DOMContentLoaded", () => {
       item.addEventListener("click", () => {
         const targetPage = item.getAttribute("data-page");
         
-        // Update Nav Active State
         navItems.forEach(nav => nav.classList.remove("active"));
         item.classList.add("active");
         
-        // Toggle Page Containers
         document.querySelectorAll(".page-container").forEach(page => {
           const pageId = page.getAttribute("id");
           if (pageId === `page-${targetPage}`) {
@@ -530,7 +484,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
-        // Trigger resize event so SVG map repositions properly if map page is shown
         if (targetPage === "map") {
           window.dispatchEvent(new Event('resize'));
         }
@@ -538,14 +491,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === 10. SHARE LOCATION (DEEP LINKING) ===
   shareBtn.addEventListener("click", () => {
     if (!selectedRoomId) return;
 
-    // Buat deep link buatan
     const deepLink = `${window.location.origin}${window.location.pathname}?room=${selectedRoomId}`;
     
-    // Salin ke clipboard
     navigator.clipboard.writeText(deepLink)
       .then(() => {
         showToast("Link lokasi disalin ke papan klip!");
@@ -562,12 +512,11 @@ document.addEventListener("DOMContentLoaded", () => {
     toastMsg.textContent = message;
     
     toast.classList.remove("hidden");
-    // Dynamic trigger animation class
+    
     setTimeout(() => {
       toast.classList.add("show");
     }, 50);
 
-    // Hide Toast after 3 seconds
     setTimeout(() => {
       toast.classList.remove("show");
       setTimeout(() => {
@@ -576,12 +525,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   }
 
-  // === 12. CHECK DEEP LINK PARAMETERS ===
   function checkDeepLink() {
     const urlParams = new URLSearchParams(window.location.search);
     const roomParam = urlParams.get("room");
     if (roomParam) {
-      // Delay sedikit agar inisialisasi awal selesai sempurna
+      
       setTimeout(() => {
         selectRoom(roomParam, true);
       }, 300);

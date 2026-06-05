@@ -1,7 +1,3 @@
-/**
- * Basis Data Lokal untuk GidiMap Komdigi - BBLSDMP Makassar
- * Menyimpan informasi lantai, ruangan, staf, fasilitas, dan panduan magang.
- */
 
 const DIGIMAP_DATA = {
   floors: [
@@ -11,7 +7,7 @@ const DIGIMAP_DATA = {
   ],
   
   rooms: [
-    // === LANTAI 1 ===
+    
     {
       id: "l1-lobi",
       floor: 1,
@@ -72,7 +68,6 @@ const DIGIMAP_DATA = {
       staf: []
     },
 
-    // === LANTAI 2 ===
     {
       id: "l2-humas",
       floor: 2,
@@ -122,7 +117,6 @@ const DIGIMAP_DATA = {
       staf: []
     },
 
-    // === LANTAI 3 ===
     {
       id: "l3-siber",
       floor: 3,
