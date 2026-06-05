@@ -1549,3 +1549,119 @@ body {
     width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+  .app-header {
+    height: auto;
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .logo-area {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .main-nav {
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 8px;
+  }
+  .nav-item {
+    font-size: 0.82rem;
+    padding: 6px 12px;
+  }
+  .header-widgets {
+    display: none;
+  }
+  .filters-bar {
+    padding: 0 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filters-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-tag {
+    flex-shrink: 0;
+  }
+  .app-main {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 165px);
+  }
+  .map-viewport {
+    width: 100%;
+    height: 400px;
+    flex: none;
+    border-bottom: 1px solid var(--border-glass);
+  }
+  .map-watermark {
+    width: 250px;
+    height: 250px;
+  }
+  .floor-selector-widget {
+    right: 12px;
+    top: 12px;
+    transform: none;
+  }
+  .floor-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+  .zoom-controls {
+    left: 12px;
+    bottom: 12px;
+  }
+  .zoom-controls button {
+    width: 32px;
+    height: 32px;
+  }
+  .sidebar-panel {
+    width: 100%;
+    height: auto;
+    border-left: none;
+    box-shadow: none;
+    background: white;
+  }
+  .tab-content {
+    padding: 16px;
+  }
+  .welcome-card {
+    padding: 24px 16px;
+  }
+  .intern-dashboard {
+    padding: 16px;
+    flex-direction: column;
+    height: auto;
+  }
+  .intern-main-card, 
+  .intern-sidebar-card {
+    width: 100%;
+    height: auto;
+    flex: none;
+    overflow-y: visible;
+  }
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+  .intern-sidebar-card {
+    margin-top: 16px;
+  }
+  .page-container {
+    height: auto;
+    min-height: calc(100vh - 75px);
+  }
+}
