@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DigiMap Komdigi - Peta Interaktif & Onboarding</title>
+  <title>GidiMap Komdigi - Peta Interaktif & Onboarding</title>
   <!-- Google Fonts: Outfit & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,18 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
   <!-- Splash Screen / Welcome Screen -->
   <div id="splash-screen" class="splash-screen">
     <div class="splash-content">
       <div class="splash-logo-container">
-        <img src="logo.png" alt="Logo DigiMap" class="splash-logo">
+        <img src="logo.png" alt="Logo GidiMap" class="splash-logo">
         <div class="splash-logo-glow"></div>
       </div>
-      <h1 class="splash-title">DigiMap <span>Komdigi</span></h1>
+      <h1 class="splash-title">GidiMap <span>Komdigi</span></h1>
       <p class="splash-subtitle">Interactive Map & Intern Companion</p>
       <div class="splash-loader">
         <div class="loader-bar"></div>
@@ -36,9 +38,9 @@
   <!-- Header / Top Bar -->
   <header class="app-header">
     <div class="logo-area">
-      <img src="logo.png" alt="Logo DigiMap" class="logo-img">
+      <img src="logo.png" alt="Logo GidiMap" class="logo-img">
       <div>
-        <h1>DigiMap <span>Komdigi</span></h1>
+        <h1>GidiMap <span>Komdigi</span></h1>
         <p class="subtitle">Interactive Map & Intern Companion</p>
       </div>
     </div>
@@ -95,15 +97,16 @@
     <!-- Peta / Map Viewport (70% width) -->
     <section class="map-viewport">
       
-      <!-- Watermark Logo Komdigi -->
+      <!-- Watermark Logo GidiMap -->
       <div class="map-watermark">
         <svg viewBox="0 0 100 100" class="watermark-svg">
-          <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" fill="none" />
-          <circle cx="50" cy="50" r="39" stroke="currentColor" stroke-width="0.5" fill="none" />
-          <!-- Curved waves mimicking official Komdigi logo wings -->
-          <path d="M 22,46 C 32,30 68,30 78,46 C 65,56 35,56 22,46 Z" fill="currentColor" />
-          <path d="M 25,54 C 34,40 66,40 75,54 C 63,62 37,62 25,54 Z" fill="currentColor" />
-          <path d="M 28,62 C 36,50 64,50 72,62 C 61,69 39,69 28,62 Z" fill="currentColor" />
+          <!-- D Shape Background -->
+          <path d="M 25,15 H 55 C 72,15 85,28 85,45 C 85,62 72,75 55,75 H 25 Z" fill="none" stroke="currentColor" stroke-width="3" />
+          <path d="M 33,25 H 52 C 65,25 75,34 75,45 C 75,56 65,65 52,65 H 33 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1 1" />
+          <!-- Map Pin Symbol -->
+          <path d="M 50,22 C 38,22 30,30 30,42 C 30,55 50,78 50,78 C 50,78 70,55 70,42 C 70,30 62,22 50,22 Z" fill="currentColor" />
+          <!-- Inner circle hole in Map Pin -->
+          <circle cx="50" cy="38" r="6" fill="white" />
         </svg>
       </div>
       
@@ -445,7 +448,7 @@
           <div class="welcome-icon-wrapper">
             <i data-lucide="navigation" class="pulse-icon"></i>
           </div>
-          <h3>Selamat Datang di DigiMap</h3>
+          <h3>Selamat Datang di GidiMap</h3>
           <p>Silakan klik ruangan mana pun di peta kantor Komdigi atau gunakan pencarian di atas untuk melihat detail divisi, penanggung jawab, serta fasilitas yang ada di ruangan tersebut.</p>
         </div>
 

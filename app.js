@@ -1,5 +1,5 @@
 /**
- * DigiMap Komdigi - Application Controller
+ * GidiMap Komdigi - Application Controller
  * Mengatur interaksi peta, pencarian, detail ruangan, dan onboarding magang.
  */
 

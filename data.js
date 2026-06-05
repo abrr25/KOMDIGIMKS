@@ -1,5 +1,5 @@
 /**
- * Basis Data Lokal untuk DigiMap Komdigi - BBLSDMP Makassar
+ * Basis Data Lokal untuk GidiMap Komdigi - BBLSDMP Makassar
  * Menyimpan informasi lantai, ruangan, staf, fasilitas, dan panduan magang.
  */
 
