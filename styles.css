@@ -1561,10 +1561,7 @@ body {
     align-items: stretch;
     gap: 12px;
   }
-  .logo-area {
-    justify-content: space-between;
-    width: 100%;
-  }
+
   .search-container {
     width: 100%;
   }
