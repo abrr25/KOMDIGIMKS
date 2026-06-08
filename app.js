@@ -534,35 +534,4 @@ document.addEventListener("DOMContentLoaded", () => {
         selectRoom(roomParam, true);
       }, 300);
     }
-  }
-
-  const portalToNoc = document.getElementById("portal-to-noc");
-  if (portalToNoc) {
-    portalToNoc.addEventListener("click", (e) => {
-      e.preventDefault();
-      
-      document.querySelectorAll(".nav-item").forEach(nav => {
-        if (nav.getAttribute("data-page") === "map") {
-          nav.classList.add("active");
-        } else {
-          nav.classList.remove("active");
-        }
-      });
-      
-      document.querySelectorAll(".page-container").forEach(page => {
-        if (page.getAttribute("id") === "page-map") {
-          page.classList.remove("hidden");
-          page.classList.add("active");
-        } else {
-          page.classList.add("hidden");
-          page.classList.remove("active");
-        }
-      });
-      
-      window.dispatchEvent(new Event('resize'));
-      
-      selectRoom('l3-noc', true);
-    });
-  }
-
 });
