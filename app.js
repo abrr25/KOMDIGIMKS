@@ -534,4 +534,6 @@ document.addEventListener("DOMContentLoaded", () => {
         selectRoom(roomParam, true);
       }, 300);
     }
+  }
+
 });
