@@ -192,7 +192,7 @@ const DIGIMAP_DATA = {
     contacts: [
       { name: "Ibu Siti Aisyah (Bagian Umum)", phone: "0812-3456-7890", role: "Administrasi & Absen Magang" },
       { name: "Bp. Tasmil (Kepala Bagian Umum)", phone: "0857-9876-5432", role: "Koordinator Layanan & Kepegawaian" },
-      { name: "NOC Center Makassar (Lantai 3)", phone: "Ekstensi 114 (Telepon Kantor)", role: "Bantuan Wi-Fi & Jaringan" }
+      { name: "NOC Center Makassar (Lantai 3)", phone: "Ekstensi 114 (Telepon Kantor)", role: "Bantuan IT & Jaringan Internal" }
     ]
   }
 };
