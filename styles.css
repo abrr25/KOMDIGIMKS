@@ -1103,38 +1103,6 @@ body {
   max-height: 150px;
 }
 
-.toast {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: white;
-  border: 1px solid var(--accent-emerald);
-  padding: 12px 25px;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 0 15px rgba(16, 185, 129, 0.1);
-  z-index: 1000;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-}
-
-.toast-icon {
-  color: var(--accent-emerald);
-  width: 18px;
-  height: 18px;
-}
-
-.toast span {
-  font-size: 0.85rem;
-  color: #0f172a;
-  font-weight: 600;
-}
 
 @keyframes svg-dash-pulse {
   to {

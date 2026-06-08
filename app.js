@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailDesc = document.getElementById("detail-desc");
   const detailFacilities = document.getElementById("detail-facilities");
   const detailStafList = document.getElementById("detail-staf-list");
-  const shareBtn = document.getElementById("btn-share-loc");
   const visualFloorTag = document.getElementById("visual-floor-tag");
   const roomVisualBox = document.getElementById("room-visual-box");
 
@@ -504,40 +503,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  shareBtn.addEventListener("click", () => {
-    if (!selectedRoomId) return;
-
-    const deepLink = `${window.location.origin}${window.location.pathname}?room=${selectedRoomId}`;
-
-    navigator.clipboard
-      .writeText(deepLink)
-      .then(() => {
-        showToast("Link lokasi disalin ke papan klip!");
-      })
-      .catch((err) => {
-        console.error("Gagal menyalin link: ", err);
-        showToast("Gagal menyalin link otomatis!");
-      });
-  });
-
-  function showToast(message) {
-    const toast = document.getElementById("toast-notification");
-    const toastMsg = document.getElementById("toast-message");
-    toastMsg.textContent = message;
-
-    toast.classList.remove("hidden");
-
-    setTimeout(() => {
-      toast.classList.add("show");
-    }, 50);
-
-    setTimeout(() => {
-      toast.classList.remove("show");
-      setTimeout(() => {
-        toast.classList.add("hidden");
-      }, 400);
-    }, 3000);
-  }
 
   function checkDeepLink() {
     const urlParams = new URLSearchParams(window.location.search);
