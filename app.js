@@ -1,6 +1,4 @@
-
 document.addEventListener("DOMContentLoaded", () => {
-  
   const splash = document.getElementById("splash-screen");
   if (splash) {
     setTimeout(() => {
@@ -27,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const welcomeCard = document.getElementById("details-welcome");
   const detailsCard = document.getElementById("room-details-card");
   const zoomContainer = document.getElementById("zoom-container");
-  
+
   const detailCategory = document.getElementById("detail-category");
   const detailName = document.getElementById("detail-name");
   const detailDivision = document.getElementById("detail-division");
@@ -61,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
-        hour12: false
+        hour12: false,
       });
       digitalClock.textContent = timeString;
     }
@@ -71,9 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function registerMapEvents() {
     const roomGroups = document.querySelectorAll(".room-group");
-    
-    roomGroups.forEach(group => {
-      
+
+    roomGroups.forEach((group) => {
       group.addEventListener("click", () => {
         const roomId = group.getAttribute("data-room-id");
         selectRoom(roomId);
@@ -83,8 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function registerFloorSwitcher() {
     const floorButtons = document.querySelectorAll(".floor-btn");
-    
-    floorButtons.forEach(btn => {
+
+    floorButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const floorNum = parseInt(btn.getAttribute("data-floor"));
         switchFloor(floorNum);
@@ -94,12 +91,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function switchFloor(floorNum) {
     if (currentFloor === floorNum) return;
-    
+
     clearActiveRoom();
-    
+
     currentFloor = floorNum;
-    
-    document.querySelectorAll(".floor-btn").forEach(btn => {
+
+    document.querySelectorAll(".floor-btn").forEach((btn) => {
       const btnFloor = parseInt(btn.getAttribute("data-floor"));
       if (btnFloor === floorNum) {
         btn.classList.add("active");
@@ -108,13 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    const floorData = DIGIMAP_DATA.floors.find(f => f.id === floorNum);
+    const floorData = DIGIMAP_DATA.floors.find((f) => f.id === floorNum);
     if (floorData) {
       currentFloorTitle.textContent = floorData.name;
       currentFloorDesc.textContent = floorData.description;
     }
 
-    document.querySelectorAll(".floor-map").forEach(map => {
+    document.querySelectorAll(".floor-map").forEach((map) => {
       const mapId = map.getAttribute("id");
       if (mapId === `map-floor-${floorNum}`) {
         map.classList.remove("hidden");
@@ -129,9 +126,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function registerZoomControls() {
-    document.getElementById("zoom-in-btn").addEventListener("click", () => adjustZoom(zoomStep));
-    document.getElementById("zoom-out-btn").addEventListener("click", () => adjustZoom(-zoomStep));
-    document.getElementById("zoom-reset-btn").addEventListener("click", resetZoom);
+    document
+      .getElementById("zoom-in-btn")
+      .addEventListener("click", () => adjustZoom(zoomStep));
+    document
+      .getElementById("zoom-out-btn")
+      .addEventListener("click", () => adjustZoom(-zoomStep));
+    document
+      .getElementById("zoom-reset-btn")
+      .addEventListener("click", resetZoom);
   }
 
   function adjustZoom(step) {
@@ -149,8 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function selectRoom(roomId, triggerFloorSwitch = false) {
-    
-    const room = DIGIMAP_DATA.rooms.find(r => r.id === roomId);
+    const room = DIGIMAP_DATA.rooms.find((r) => r.id === roomId);
     if (!room) return;
 
     if (triggerFloorSwitch && room.floor !== currentFloor) {
@@ -158,10 +160,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     clearActiveRoom();
-    const svgRoom = document.querySelector(`.room-group[data-room-id="${roomId}"]`);
+    const svgRoom = document.querySelector(
+      `.room-group[data-room-id="${roomId}"]`,
+    );
     if (svgRoom) {
       svgRoom.classList.add("active-room");
-      
+
       svgRoom.classList.add("pulse-highlight");
       setTimeout(() => {
         svgRoom.classList.remove("pulse-highlight");
@@ -181,14 +185,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     detailFacilities.innerHTML = "";
     if (room.facilities.length > 0) {
-      room.facilities.forEach(fac => {
+      room.facilities.forEach((fac) => {
         const tag = document.createElement("span");
         tag.className = "facility-tag";
-        
+
         let iconName = "check";
         if (fac.includes("Wi-Fi")) iconName = "wifi";
         else if (fac.includes("AC")) iconName = "wind";
-        else if (fac.includes("Proyektor") || fac.includes("TV")) iconName = "monitor";
+        else if (fac.includes("Proyektor") || fac.includes("TV"))
+          iconName = "monitor";
         else if (fac.includes("Kapasitas")) iconName = "users";
 
         tag.innerHTML = `<i data-lucide="${iconName}"></i> ${fac}`;
@@ -200,11 +205,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     detailStafList.innerHTML = "";
     if (room.staf.length > 0) {
-      room.staf.forEach(person => {
+      room.staf.forEach((person) => {
         const item = document.createElement("div");
         item.className = "staff-item";
-        
-        const initials = person.name.split(" ").map(n => n[0]).slice(0, 2).join("");
+
+        const initials = person.name
+          .split(" ")
+          .map((n) => n[0])
+          .slice(0, 2)
+          .join("");
 
         item.innerHTML = `
           <div class="staff-avatar">${initials}</div>
@@ -223,28 +232,33 @@ document.addEventListener("DOMContentLoaded", () => {
     detailsCard.classList.remove("hidden");
 
     switchTab("details");
-    
+
     lucide.createIcons();
   }
 
   function clearActiveRoom() {
-    document.querySelectorAll(".room-group").forEach(group => {
+    document.querySelectorAll(".room-group").forEach((group) => {
       group.classList.remove("active-room");
       group.classList.remove("pulse-highlight");
     });
   }
 
   function applyCategoryGradient(category) {
-    let gradient = "linear-gradient(135deg, hsl(210, 30%, 93%), hsl(210, 40%, 88%))";
-    
+    let gradient =
+      "linear-gradient(135deg, hsl(210, 30%, 93%), hsl(210, 40%, 88%))";
+
     if (category === "Kantor") {
-      gradient = "linear-gradient(135deg, rgba(0, 77, 230, 0.08), rgba(255, 255, 255, 0.95))";
+      gradient =
+        "linear-gradient(135deg, rgba(0, 77, 230, 0.08), rgba(255, 255, 255, 0.95))";
     } else if (category === "Rapat") {
-      gradient = "linear-gradient(135deg, rgba(197, 95, 43, 0.08), rgba(255, 255, 255, 0.95))";
+      gradient =
+        "linear-gradient(135deg, rgba(197, 95, 43, 0.08), rgba(255, 255, 255, 0.95))";
     } else if (category === "Layanan") {
-      gradient = "linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(255, 255, 255, 0.95))";
+      gradient =
+        "linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(255, 255, 255, 0.95))";
     } else if (category === "Fasilitas") {
-      gradient = "linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(255, 255, 255, 0.95))";
+      gradient =
+        "linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(255, 255, 255, 0.95))";
     }
 
     roomVisualBox.style.background = gradient;
@@ -253,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function registerSearchEvents() {
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase().trim();
-      
+
       if (query.length > 0) {
         clearSearchBtn.classList.remove("hidden");
         performSearch(query);
@@ -287,13 +301,15 @@ document.addEventListener("DOMContentLoaded", () => {
     searchSuggestions.innerHTML = "";
     const results = [];
 
-    DIGIMAP_DATA.rooms.forEach(room => {
+    DIGIMAP_DATA.rooms.forEach((room) => {
       let score = 0;
       if (room.name.toLowerCase().includes(query)) score += 10;
       if (room.division.toLowerCase().includes(query)) score += 5;
       if (room.category.toLowerCase().includes(query)) score += 3;
-      
-      const matchingStaff = room.staf.filter(s => s.name.toLowerCase().includes(query));
+
+      const matchingStaff = room.staf.filter((s) =>
+        s.name.toLowerCase().includes(query),
+      );
       if (matchingStaff.length > 0) {
         score += matchingStaff.length * 8;
       }
@@ -308,10 +324,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const topResults = results.slice(0, 5);
 
     if (topResults.length > 0) {
-      topResults.forEach(item => {
+      topResults.forEach((item) => {
         const div = document.createElement("div");
         div.className = "suggestion-item";
-        
+
         let subText = item.room.division;
         if (item.matchingStaff.length > 0) {
           subText = `<i data-lucide="user"></i> Staf: ${item.matchingStaff[0].name}`;
@@ -324,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <span class="suggest-floor">Lantai ${item.room.floor}</span>
         `;
-        
+
         const handleSelect = (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -337,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         searchSuggestions.appendChild(div);
       });
-      
+
       searchSuggestions.classList.remove("hidden");
       lucide.createIcons();
     } else {
@@ -348,11 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function registerFilterTags() {
     const filterTags = document.querySelectorAll(".filter-tag");
-    
-    filterTags.forEach(tag => {
+
+    filterTags.forEach((tag) => {
       tag.addEventListener("click", () => {
-        
-        filterTags.forEach(t => t.classList.remove("active"));
+        filterTags.forEach((t) => t.classList.remove("active"));
         tag.classList.add("active");
 
         const category = tag.getAttribute("data-category");
@@ -363,10 +378,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function applyCategoryFilter(category) {
     const roomGroups = document.querySelectorAll(".room-group");
-    
-    roomGroups.forEach(group => {
+
+    roomGroups.forEach((group) => {
       const roomId = group.getAttribute("data-room-id");
-      const room = DIGIMAP_DATA.rooms.find(r => r.id === roomId);
+      const room = DIGIMAP_DATA.rooms.find((r) => r.id === roomId);
 
       if (!room) return;
 
@@ -374,7 +389,6 @@ document.addEventListener("DOMContentLoaded", () => {
         group.style.opacity = "1";
         group.querySelector(".room-path").style.stroke = "";
       } else {
-        
         group.style.opacity = "0.2";
       }
     });
@@ -382,8 +396,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function registerTabs() {
     const tabButtons = document.querySelectorAll(".tab-btn");
-    
-    tabButtons.forEach(btn => {
+
+    tabButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetTab = btn.getAttribute("data-tab");
         switchTab(targetTab);
@@ -392,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function switchTab(tabId) {
-    document.querySelectorAll(".tab-btn").forEach(btn => {
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
       if (btn.getAttribute("data-tab") === tabId) {
         btn.classList.add("active");
       } else {
@@ -400,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    document.querySelectorAll(".tab-content").forEach(content => {
+    document.querySelectorAll(".tab-content").forEach((content) => {
       if (content.getAttribute("id") === `tab-${tabId}`) {
         content.classList.remove("hidden");
         content.classList.add("active");
@@ -412,18 +426,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initOnboardingHub() {
-    
     contactsContainer.innerHTML = "";
-    DIGIMAP_DATA.onboarding.contacts.forEach(contact => {
+    DIGIMAP_DATA.onboarding.contacts.forEach((contact) => {
       const card = document.createElement("div");
       card.className = "contact-card";
-      
+
       card.innerHTML = `
         <div>
           <div class="contact-name">${contact.name}</div>
           <div class="contact-role">${contact.role}</div>
         </div>
-        <a href="tel:${contact.phone.replace(/[^0-9]/g, '')}" class="contact-action">
+        <a href="tel:${contact.phone.replace(/[^0-9]/g, "")}" class="contact-action">
           <i data-lucide="phone-call"></i> Hubungi
         </a>
       `;
@@ -447,11 +460,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const btn = item.querySelector(".faq-question");
       btn.addEventListener("click", () => {
         const isActive = item.classList.contains("active");
-        
-        document.querySelectorAll(".faq-item").forEach(otherItem => {
+
+        document.querySelectorAll(".faq-item").forEach((otherItem) => {
           otherItem.classList.remove("active");
         });
-        
+
         if (!isActive) {
           item.classList.add("active");
         }
@@ -465,15 +478,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function registerPageSwitcher() {
     const navItems = document.querySelectorAll(".nav-item");
-    
-    navItems.forEach(item => {
+
+    navItems.forEach((item) => {
       item.addEventListener("click", () => {
         const targetPage = item.getAttribute("data-page");
-        
-        navItems.forEach(nav => nav.classList.remove("active"));
+
+        navItems.forEach((nav) => nav.classList.remove("active"));
         item.classList.add("active");
-        
-        document.querySelectorAll(".page-container").forEach(page => {
+
+        document.querySelectorAll(".page-container").forEach((page) => {
           const pageId = page.getAttribute("id");
           if (pageId === `page-${targetPage}`) {
             page.classList.remove("hidden");
@@ -485,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (targetPage === "map") {
-          window.dispatchEvent(new Event('resize'));
+          window.dispatchEvent(new Event("resize"));
         }
       });
     });
@@ -495,12 +508,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!selectedRoomId) return;
 
     const deepLink = `${window.location.origin}${window.location.pathname}?room=${selectedRoomId}`;
-    
-    navigator.clipboard.writeText(deepLink)
+
+    navigator.clipboard
+      .writeText(deepLink)
       .then(() => {
         showToast("Link lokasi disalin ke papan klip!");
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Gagal menyalin link: ", err);
         showToast("Gagal menyalin link otomatis!");
       });
@@ -510,9 +524,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const toast = document.getElementById("toast-notification");
     const toastMsg = document.getElementById("toast-message");
     toastMsg.textContent = message;
-    
+
     toast.classList.remove("hidden");
-    
+
     setTimeout(() => {
       toast.classList.add("show");
     }, 50);
@@ -529,11 +543,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const roomParam = urlParams.get("room");
     if (roomParam) {
-      
       setTimeout(() => {
         selectRoom(roomParam, true);
       }, 300);
     }
   }
-
 });

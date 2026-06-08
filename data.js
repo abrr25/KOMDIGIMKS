@@ -68,18 +68,6 @@ const DIGIMAP_DATA = {
       staf: []
     },
     {
-      id: "l1-playground",
-      floor: 1,
-      name: "Tempat Bermain Anak (Kids Zone)",
-      category: "Fasilitas",
-      division: "Umum - Layanan Publik",
-      description: "Fasilitas ruang bermain anak yang disediakan bagi pengunjung atau tamu layanan publik yang membawa anak-anak. Dilengkapi dengan karpet lembut, mainan edukatif, buku bacaan anak, dan suasana yang ramah anak.",
-      facilities: ["Karpet Lembut", "Mainan Edukatif", "Buku Bacaan Anak", "AC", "Sofa Pendamping"],
-      staf: [
-        { name: "Dewi Lestari", role: "Pengawas Area Layanan Publik" }
-      ]
-    },
-    {
       id: "l1-toilet",
       floor: 1,
       name: "Toilet Umum Lantai 1",
@@ -137,6 +125,18 @@ const DIGIMAP_DATA = {
       description: "Dapur bersih lantai 2 untuk istirahat kopi fungsional dan staf balai.",
       facilities: ["Dispenser", "Kulkas", "Coffee Maker", "Snack Box"],
       staf: []
+    },
+    {
+      id: "l2-playground",
+      floor: 2,
+      name: "Tempat Bermain Anak (Kids Zone)",
+      category: "Fasilitas",
+      division: "Umum - Layanan Publik",
+      description: "Fasilitas ruang bermain anak yang disediakan bagi pengunjung atau tamu layanan publik yang membawa anak-anak. Dilengkapi dengan karpet lembut, mainan edukatif, buku bacaan anak, dan suasana yang ramah anak.",
+      facilities: ["Karpet Lembut", "Mainan Edukatif", "Buku Bacaan Anak", "AC", "Sofa Pendamping"],
+      staf: [
+        { name: "Dewi Lestari", role: "Pengawas Area Layanan Publik" }
+      ]
     },
     {
       id: "l2-toilet",
