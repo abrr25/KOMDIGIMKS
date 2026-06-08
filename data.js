@@ -67,6 +67,28 @@ const DIGIMAP_DATA = {
       facilities: ["Water Dispenser", "Kulkas", "Microwave", "Kopi & Teh Gratis"],
       staf: []
     },
+    {
+      id: "l1-playground",
+      floor: 1,
+      name: "Tempat Bermain Anak (Kids Zone)",
+      category: "Fasilitas",
+      division: "Umum - Layanan Publik",
+      description: "Fasilitas ruang bermain anak yang disediakan bagi pengunjung atau tamu layanan publik yang membawa anak-anak. Dilengkapi dengan karpet lembut, mainan edukatif, buku bacaan anak, dan suasana yang ramah anak.",
+      facilities: ["Karpet Lembut", "Mainan Edukatif", "Buku Bacaan Anak", "AC", "Sofa Pendamping"],
+      staf: [
+        { name: "Dewi Lestari", role: "Pengawas Area Layanan Publik" }
+      ]
+    },
+    {
+      id: "l1-toilet",
+      floor: 1,
+      name: "Toilet Umum Lantai 1",
+      category: "Fasilitas",
+      division: "Umum",
+      description: "Fasilitas toilet umum Lantai 1 yang bersih dan nyaman, terbagi atas toilet pria dan toilet wanita, serta dilengkapi dengan wastafel dan cermin besar.",
+      facilities: ["Wastafel", "Cermin Besar", "Pengering Tangan", "Toilet Pria & Wanita"],
+      staf: []
+    },
 
     {
       id: "l2-humas",
@@ -114,6 +136,16 @@ const DIGIMAP_DATA = {
       division: "Umum",
       description: "Dapur bersih lantai 2 untuk istirahat kopi fungsional dan staf balai.",
       facilities: ["Dispenser", "Kulkas", "Coffee Maker", "Snack Box"],
+      staf: []
+    },
+    {
+      id: "l2-toilet",
+      floor: 2,
+      name: "Toilet Umum Lantai 2",
+      category: "Fasilitas",
+      division: "Umum",
+      description: "Fasilitas toilet Lantai 2 untuk karyawan dan peserta pelatihan, terbagi atas area pria dan wanita.",
+      facilities: ["Wastafel", "Cermin", "Toilet Pria & Wanita"],
       staf: []
     },
 
@@ -165,6 +197,16 @@ const DIGIMAP_DATA = {
       division: "Umum",
       description: "Tempat istirahat nyaman bagi staf IT Support & Jaringan yang bertugas piket lembur.",
       facilities: ["Dispenser Air Hangat", "Mesin Kopi Kapsul", "Sofa Santai", "Smart TV"],
+      staf: []
+    },
+    {
+      id: "l3-toilet",
+      floor: 3,
+      name: "Toilet Umum Lantai 3",
+      category: "Fasilitas",
+      division: "Umum",
+      description: "Fasilitas toilet Lantai 3 untuk staf IT Support, NOC, dan Jaringan, terbagi atas area pria dan wanita.",
+      facilities: ["Wastafel", "Cermin", "Toilet Pria & Wanita"],
       staf: []
     }
   ],
