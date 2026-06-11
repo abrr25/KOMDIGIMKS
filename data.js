@@ -184,16 +184,7 @@ const DIGIMAP_DATA = {
         { name: "Solehuddin Hasdin", role: "Koordinator Media Publikasi" }
       ]
     },
-    {
-      id: "l2-playground",
-      floor: 2,
-      name: "Tempat Bermain Anak (Kids Zone)",
-      category: "Fasilitas",
-      division: "Umum - Layanan Publik",
-      description: "Fasilitas pojok ramah anak yang disediakan bagi pengunjung yang membawa anak kecil. Menyediakan aneka mainan edukatif dan buku dongeng.",
-      facilities: ["Karpet Lembut", "Mainan Edukatif", "Buku Bacaan Anak", "AC", "Sofa Pendamping"],
-      staf: []
-    },
+
     {
       id: "l2-toilet-pria",
       floor: 2,
@@ -321,7 +312,7 @@ const DIGIMAP_DATA = {
     {
       id: "l3-rapat",
       floor: 3,
-      name: "Ruang Rapat Pimpinan",
+      name: "Ruang Rapat",
       category: "Rapat",
       division: "Umum",
       description: "Ruang rapat koordinasi terbatas pimpinan, evaluasi program kerja bulanan, dan telekonferensi video tingkat kementerian.",
