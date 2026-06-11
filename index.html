@@ -106,299 +106,404 @@
 
       <div class="map-container" id="zoom-container">
         
+        <!-- --- LANTAI 1 --- -->
         <div class="floor-map active" id="map-floor-1">
           <svg viewBox="0 0 800 500" class="floor-svg">
-            
             <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
             
-            <rect x="230" y="280" width="340" height="85" class="map-corridor" />
-            <rect x="230" y="100" width="340" height="180" class="map-corridor" />
-            <rect x="200" y="220" width="400" height="60" class="map-corridor" />
+            <!-- Selasar/Corridor -->
+            <rect x="160" y="160" width="110" height="200" class="map-corridor" />
+            <rect x="270" y="300" width="260" height="60" class="map-corridor" />
             
-            <g class="room-group" data-room-id="l1-lobi">
-              <rect x="250" y="100" width="300" height="180" rx="12" class="room-path" />
-              
-              <path d="M 330,220 C 330,190 470,190 470,220" fill="none" stroke="#cbd5e1" stroke-width="4" opacity="0.8" />
-              <rect x="385" y="195" width="30" height="10" rx="2" fill="none" stroke="#cbd5e1" opacity="0.6" />
-              
-              <text x="400" y="150" class="room-label">Lobi Utama & Resepsionis</text>
-              <text x="400" y="170" class="room-category-label">Layanan Publik</text>
+            <g class="room-group" data-room-id="l1-pelatihan-1">
+              <rect x="50" y="40" width="220" height="120" rx="12" class="room-path" />
+              <text x="160" y="96" class="room-label">Ruang Pelatihan 1</text>
+              <text x="160" y="110" class="room-category-label">Layanan</text>
             </g>
             
-            <g class="room-group" data-room-id="l1-rapat-toba">
-              <rect x="50" y="100" width="180" height="150" rx="12" class="room-path" />
-              
-              <rect x="90" y="145" width="100" height="50" rx="25" fill="none" stroke="#cbd5e1" stroke-width="2" opacity="0.8" />
-              
-              <circle cx="110" cy="135" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="140" cy="135" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="170" cy="135" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="110" cy="205" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="140" cy="205" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="170" cy="205" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="80" cy="170" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="200" cy="170" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              
-              <text x="140" y="123" class="room-label">Ruang Rapat Phinisi</text>
-              <text x="140" y="222" class="room-category-label">Ruang Rapat</text>
+            <g class="room-group" data-room-id="l1-pelatihan-2">
+              <rect x="270" y="40" width="260" height="120" rx="12" class="room-path" />
+              <text x="400" y="96" class="room-label">Ruang Pelatihan 2</text>
+              <text x="400" y="110" class="room-category-label">Layanan</text>
             </g>
             
-            <g class="room-group" data-room-id="l1-kepegawaian">
-              <rect x="570" y="100" width="180" height="220" rx="12" class="room-path" />
-              
-              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
-                
-                <rect x="590" y="120" width="35" height="20" rx="2" />
-                <rect x="590" y="150" width="35" height="20" rx="2" />
-                
-                <rect x="695" y="120" width="35" height="20" rx="2" />
-                <rect x="695" y="150" width="35" height="20" rx="2" />
-                
-                <rect x="590" y="240" width="35" height="20" rx="2" />
-                <rect x="695" y="240" width="35" height="20" rx="2" />
-              </g>
-              <text x="660" y="200" class="room-label">Bagian Umum &</text>
-              <text x="660" y="218" class="room-label">Kepegawaian</text>
-              <text x="660" y="295" class="room-category-label">Kantor</text>
+            <g class="room-group" data-room-id="l1-pelatihan-difabel">
+              <rect x="530" y="40" width="220" height="120" rx="12" class="room-path" />
+              <text x="640" y="96" class="room-label">Pelatihan Difabel</text>
+              <text x="640" y="110" class="room-category-label">Layanan</text>
             </g>
             
-            <g class="room-group" data-room-id="l1-mushola">
-              <rect x="50" y="270" width="180" height="130" rx="12" class="room-path" />
-              
-              <path d="M 50,335 L 70,335 L 70,365 L 50,365" fill="none" stroke="#cbd5e1" stroke-width="1.5" opacity="0.6" />
-              <line x1="90" y1="280" x2="90" y2="390" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3" opacity="0.4" />
-              <line x1="130" y1="280" x2="130" y2="390" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3" opacity="0.4" />
-              <text x="140" y="330" class="room-label">Mushola Al-Ikhlas</text>
-              <text x="140" y="355" class="room-category-label">Fasilitas</text>
+            <g class="room-group" data-room-id="l1-laktasi">
+              <rect x="50" y="160" width="110" height="90" rx="8" class="room-path" />
+              <text x="105" y="201" class="room-label" style="font-size: 9px;">Ruang Laktasi</text>
+              <text x="105" y="214" class="room-category-label">Fasilitas</text>
             </g>
             
-            <g class="room-group" data-room-id="l1-pantry">
-              <rect x="570" y="340" width="180" height="85" rx="12" class="room-path" />
-              
-              <rect x="580" y="345" width="160" height="15" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.7" />
-              <circle cx="600" cy="352" r="5" fill="none" stroke="#cbd5e1" opacity="0.7" />
-              <text x="660" y="390" class="room-label">Pantry</text>
+            <g class="room-group" data-room-id="l1-resepsionis">
+              <rect x="270" y="160" width="260" height="140" rx="12" class="room-path" />
+              <!-- Resepsionis Desk Decoration -->
+              <rect x="350" y="260" width="100" height="15" rx="3" fill="none" stroke="#cbd5e1" stroke-width="1.5" opacity="0.8" />
+              <text x="400" y="220" class="room-label">Resepsionis & Lobby</text>
+              <text x="400" y="234" class="room-category-label">Layanan</text>
             </g>
-
-            <g class="room-group" data-room-id="l1-toilet">
-              <rect x="510" y="375" width="50" height="55" rx="8" class="room-path" />
-              <text x="535" y="402" class="room-label" style="font-size: 8px;">Toilet</text>
-              <text x="535" y="415" class="room-category-label">Fasilitas</text>
+            
+            <g class="room-group" data-room-id="l1-coworking">
+              <rect x="530" y="160" width="220" height="200" rx="12" class="room-path" />
+              <text x="640" y="256" class="room-label">Co-Working Space</text>
+              <text x="640" y="270" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l1-toilet-pria">
+              <rect x="50" y="250" width="110" height="55" rx="8" class="room-path" />
+              <text x="105" y="275" class="room-label" style="font-size: 9px;">Toilet Pria</text>
+              <text x="105" y="286" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l1-toilet-wanita">
+              <rect x="50" y="305" width="110" height="55" rx="8" class="room-path" />
+              <text x="105" y="330" class="room-label" style="font-size: 9px;">Toilet Wanita</text>
+              <text x="105" y="341" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l1-ob">
+              <rect x="50" y="360" width="110" height="100" rx="8" class="room-path" />
+              <text x="105" y="406" class="room-label" style="font-size: 9px;">Ruang OB</text>
+              <text x="105" y="419" class="room-category-label">Fasilitas</text>
             </g>
             
             <g class="elevator-group">
-              <rect x="370" y="375" width="60" height="55" rx="8" class="map-elevator" />
-              <line x1="370" y1="402" x2="430" y2="402" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
-              <line x1="400" y1="375" x2="400" y2="430" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
-              <text x="400" y="395" class="elevator-label">LIFT</text>
+              <rect x="270" y="360" width="60" height="100" rx="8" class="map-elevator" />
+              <line x1="270" y1="410" x2="330" y2="410" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <line x1="300" y1="360" x2="300" y2="460" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <text x="300" y="390" class="elevator-label">LIFT</text>
             </g>
             
             <g class="stairs-group">
-              <rect x="440" y="375" width="60" height="55" rx="8" class="map-stairs" />
-              <line x1="440" y1="382" x2="500" y2="382" />
-              <line x1="440" y1="390" x2="500" y2="390" />
-              <line x1="440" y1="398" x2="500" y2="398" />
-              <line x1="440" y1="406" x2="500" y2="406" />
-              <line x1="440" y1="414" x2="500" y2="414" />
-              <line x1="440" y1="422" x2="500" y2="422" />
-              <text x="470" y="420" class="stairs-label" style="font-size:7px;">TANGGA</text>
+              <rect x="640" y="360" width="110" height="100" rx="8" class="map-stairs" />
+              <line x1="640" y1="375" x2="750" y2="375" />
+              <line x1="640" y1="390" x2="750" y2="390" />
+              <line x1="640" y1="405" x2="750" y2="405" />
+              <line x1="640" y1="420" x2="750" y2="420" />
+              <line x1="640" y1="435" x2="750" y2="435" />
+              <text x="695" y="425" class="stairs-label">TANGGA</text>
             </g>
-
-            <circle cx="215" cy="250" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
-            <circle cx="585" cy="250" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
+            
+            <!-- Static Elements -->
+            <rect x="470" y="360" width="60" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+            <text x="500" y="410" class="stairs-label" style="font-size:7px;">PANEL</text>
+            
+            <rect x="330" y="360" width="140" height="100" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3" />
+            <text x="400" y="410" class="stairs-label" style="font-size: 9px; fill: #64748b;">LOBBY UTAMA</text>
           </svg>
         </div>
 
+        <!-- --- LANTAI 2 --- -->
         <div class="floor-map hidden" id="map-floor-2">
           <svg viewBox="0 0 800 500" class="floor-svg">
-            
             <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
             
-            <rect x="280" y="100" width="240" height="290" class="map-corridor" />
-            <rect x="50" y="280" width="700" height="60" class="map-corridor" />
+            <!-- Selasar/Corridor -->
+            <rect x="270" y="160" width="260" height="200" class="map-corridor" />
             
-            <g class="room-group" data-room-id="l2-rapat-singkarak">
-              <rect x="300" y="80" width="200" height="120" rx="12" class="room-path" />
-              
-              <rect x="340" y="130" width="120" height="40" rx="20" fill="none" stroke="#cbd5e1" stroke-width="2" opacity="0.8" />
-              
-              <circle cx="360" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="385" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="410" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="435" cy="120" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="360" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="385" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="410" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <circle cx="435" cy="180" r="4" fill="none" stroke="#cbd5e1" opacity="0.8" />
-              <text x="400" y="110" class="room-label">Ruang Rapat Losari</text>
-              <text x="400" y="195" class="room-category-label">Ruang Rapat</text>
+            <g class="room-group" data-room-id="l2-comp-lab">
+              <rect x="50" y="40" width="220" height="120" rx="12" class="room-path" />
+              <text x="160" y="96" class="room-label">Lab Komputer</text>
+              <text x="160" y="110" class="room-category-label">Layanan</text>
             </g>
             
-            <g class="room-group" data-room-id="l2-humas">
-              <rect x="50" y="80" width="230" height="260" rx="12" class="room-path" />
-              
-              <rect x="60" y="90" width="90" height="90" rx="8" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="2" opacity="0.8" />
-              <text x="105" y="140" fill="#94a3b8" font-size="8px" font-weight="700" text-anchor="middle">STUDIO PODCAST</text>
-              
-              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
-                <rect x="170" y="95" width="35" height="20" rx="2" />
-                <rect x="170" y="125" width="35" height="20" rx="2" />
-                <rect x="170" y="240" width="35" height="20" rx="2" />
-                <rect x="170" y="270" width="35" height="20" rx="2" />
-              </g>
-              <text x="165" y="190" class="room-label">Divisi Pelatihan &</text>
-              <text x="165" y="208" class="room-label">Media Publikasi</text>
-              <text x="165" y="325" class="room-category-label">Kantor</text>
+            <g class="room-group" data-room-id="l2-pelatihan-1">
+              <rect x="50" y="160" width="220" height="100" rx="12" class="room-path" />
+              <text x="160" y="206" class="room-label">Ruang Pelatihan 1</text>
+              <text x="160" y="220" class="room-category-label">Layanan</text>
             </g>
             
-            <g class="room-group" data-room-id="l2-aptika">
-              <rect x="520" y="80" width="230" height="260" rx="12" class="room-path" />
-              
-              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
-                
-                <rect x="540" y="95" width="35" height="20" rx="2" />
-                <rect x="540" y="125" width="35" height="20" rx="2" />
-                
-                <rect x="695" y="95" width="35" height="20" rx="2" />
-                <rect x="695" y="125" width="35" height="20" rx="2" />
-                
-                <rect x="540" y="240" width="35" height="20" rx="2" />
-                <rect x="540" y="270" width="35" height="20" rx="2" />
-                
-                <rect x="695" y="240" width="35" height="20" rx="2" />
-                <rect x="695" y="270" width="35" height="20" rx="2" />
-              </g>
-              <text x="635" y="180" class="room-label">Tim Penelitian &</text>
-              <text x="635" y="198" class="room-label">Visualisasi Data</text>
-              <text x="635" y="325" class="room-category-label">Kantor</text>
+            <g class="room-group" data-room-id="l2-podcast">
+              <rect x="50" y="260" width="220" height="100" rx="12" class="room-path" />
+              <text x="160" y="306" class="room-label">Ruang Podcast</text>
+              <text x="160" y="320" class="room-category-label">Layanan</text>
             </g>
-
+            
+            <g class="room-group" data-room-id="l2-pelatihan-2">
+              <rect x="270" y="40" width="260" height="120" rx="12" class="room-path" />
+              <text x="400" y="96" class="room-label">Ruang Pelatihan 2</text>
+              <text x="400" y="110" class="room-category-label">Layanan</text>
+            </g>
+            
             <g class="room-group" data-room-id="l2-playground">
-              <rect x="230" y="350" width="100" height="90" rx="12" class="room-path" />
-              <text x="280" y="388" class="room-label" style="font-size: 8px;">Area Bermain</text>
-              <text x="280" y="401" class="room-label" style="font-size: 8px;">Anak</text>
-              <text x="280" y="422" class="room-category-label">Fasilitas</text>
+              <rect x="340" y="220" width="120" height="80" rx="12" class="room-path" />
+              <text x="400" y="252" class="room-label" style="font-size: 8px;">Area Bermain</text>
+              <text x="400" y="264" class="room-label" style="font-size: 8px;">Anak</text>
+              <text x="400" y="280" class="room-category-label">Fasilitas</text>
             </g>
             
-            <g class="room-group" data-room-id="l2-pantry">
-              <rect x="340" y="350" width="120" height="90" rx="12" class="room-path" />
-              
-              <rect x="350" y="355" width="100" height="15" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.7" />
-              <text x="400" y="395" class="room-label">Pantry</text>
-              <text x="400" y="415" class="room-category-label">Fasilitas</text>
+            <g class="room-group" data-room-id="l2-sertifikasi">
+              <rect x="530" y="40" width="220" height="120" rx="12" class="room-path" />
+              <text x="640" y="96" class="room-label">Ruang Sertifikasi</text>
+              <text x="640" y="110" class="room-category-label">Layanan</text>
             </g>
-
-            <g class="room-group" data-room-id="l2-toilet">
-              <rect x="470" y="350" width="60" height="90" rx="12" class="room-path" />
-              <text x="500" y="395" class="room-label">Toilet</text>
-              <text x="500" y="415" class="room-category-label">Fasilitas</text>
+            
+            <g class="room-group" data-room-id="l2-wudhu-pria">
+              <rect x="530" y="160" width="110" height="100" rx="8" class="room-path" />
+              <text x="585" y="202" class="room-label" style="font-size: 9px;">Wudhu Pria</text>
+              <text x="585" y="215" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l2-wudhu-wanita">
+              <rect x="640" y="160" width="110" height="100" rx="8" class="room-path" />
+              <text x="695" y="202" class="room-label" style="font-size: 9px;">Wudhu Wanita</text>
+              <text x="695" y="215" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l2-musholah">
+              <rect x="530" y="260" width="220" height="100" rx="12" class="room-path" />
+              <text x="640" y="306" class="room-label">Musholah Al-Ikhlas</text>
+              <text x="640" y="320" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l2-toilet-pria">
+              <rect x="50" y="360" width="110" height="50" rx="8" class="room-path" />
+              <text x="105" y="382" class="room-label" style="font-size: 9px;">Toilet Pria</text>
+              <text x="105" y="393" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l2-toilet-wanita">
+              <rect x="50" y="410" width="110" height="50" rx="8" class="room-path" />
+              <text x="105" y="432" class="room-label" style="font-size: 9px;">Toilet Wanita</text>
+              <text x="105" y="443" class="room-category-label">Fasilitas</text>
             </g>
             
             <g class="elevator-group">
-              <rect x="300" y="210" width="60" height="55" rx="8" class="map-elevator" />
-              <line x1="300" y1="237" x2="360" y2="237" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
-              <line x1="330" y1="210" x2="330" y2="265" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
-              <text x="330" y="235" class="elevator-label" style="font-size: 8px;">LIFT</text>
+              <rect x="270" y="360" width="60" height="100" rx="8" class="map-elevator" />
+              <line x1="270" y1="410" x2="330" y2="410" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <line x1="300" y1="360" x2="300" y2="460" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <text x="300" y="390" class="elevator-label">LIFT</text>
             </g>
             
             <g class="stairs-group">
-              <rect x="440" y="210" width="60" height="55" rx="8" class="map-stairs" />
-              <line x1="440" y1="218" x2="500" y2="218" />
-              <line x1="440" y1="226" x2="500" y2="226" />
-              <line x1="440" y1="234" x2="500" y2="234" />
-              <line x1="440" y1="242" x2="500" y2="242" />
-              <line x1="440" y1="250" x2="500" y2="250" />
-              <line x1="440" y1="258" x2="500" y2="258" />
-              <text x="470" y="255" class="stairs-label" style="font-size:7px;">TANGGA</text>
+              <rect x="640" y="360" width="110" height="100" rx="8" class="map-stairs" />
+              <line x1="640" y1="375" x2="750" y2="375" />
+              <line x1="640" y1="390" x2="750" y2="390" />
+              <line x1="640" y1="405" x2="750" y2="405" />
+              <line x1="640" y1="420" x2="750" y2="420" />
+              <line x1="640" y1="435" x2="750" y2="435" />
+              <text x="695" y="425" class="stairs-label">TANGGA</text>
             </g>
-
-            <circle cx="265" cy="310" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
-            <circle cx="535" cy="310" r="6" fill="#86efac" stroke="#4ade80" stroke-width="1" />
+            
+            <g class="room-group" data-room-id="l2-server">
+              <rect x="530" y="360" width="110" height="100" rx="8" class="room-path" />
+              <text x="585" y="406" class="room-label" style="font-size: 9px;">Ruang Server</text>
+              <text x="585" y="419" class="room-category-label">Kantor</text>
+            </g>
+            
+            <rect x="470" y="360" width="60" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+            <text x="500" y="410" class="stairs-label" style="font-size:7px;">PANEL</text>
+            
+            <rect x="330" y="360" width="140" height="100" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3" />
+            <text x="400" y="410" class="stairs-label" style="font-size: 9px; fill: #64748b;">SELASAR</text>
           </svg>
         </div>
 
+        <!-- --- LANTAI 3 --- -->
         <div class="floor-map hidden" id="map-floor-3">
           <svg viewBox="0 0 800 500" class="floor-svg">
-            
             <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
             
-            <rect x="280" y="100" width="240" height="290" class="map-corridor" />
-            <rect x="50" y="280" width="700" height="60" class="map-corridor" />
+            <!-- Selasar/Corridor -->
+            <rect x="270" y="160" width="260" height="200" class="map-corridor" />
             
-            <g class="room-group" data-room-id="l3-noc">
-              <rect x="300" y="80" width="200" height="120" rx="12" class="room-path" />
-              
-              <path d="M 330,175 C 330,140 470,140 470,175" fill="none" stroke="#3b82f6" stroke-width="4" opacity="0.8" />
-              
-              <line x1="330" y1="83" x2="470" y2="83" stroke="#cbd5e1" stroke-width="4" />
-              <text x="400" y="115" class="room-label">NOC Center BBLSDMP</text>
-              <text x="400" y="130" class="room-category-label">Layanan</text>
+            <g class="room-group" data-room-id="l3-istirahat">
+              <rect x="50" y="40" width="140" height="120" rx="12" class="room-path" />
+              <text x="120" y="96" class="room-label">Ruang Istirahat</text>
+              <text x="120" y="110" class="room-category-label">Fasilitas</text>
             </g>
             
-            <g class="room-group" data-room-id="l3-siber">
-              <rect x="50" y="80" width="230" height="260" rx="12" class="room-path" />
-              
-              <g opacity="0.6" stroke="#cbd5e1" stroke-width="1" fill="none">
-                <rect x="70" y="95" width="35" height="20" rx="2" />
-                <rect x="70" y="125" width="35" height="20" rx="2" />
-                <rect x="70" y="240" width="35" height="20" rx="2" />
-                <rect x="70" y="270" width="35" height="20" rx="2" />
-                <rect x="220" y="95" width="35" height="20" rx="2" />
-                <rect x="220" y="125" width="35" height="20" rx="2" />
-              </g>
-              <text x="165" y="180" class="room-label">Infrastruktur TIK &</text>
-              <text x="165" y="198" class="room-label">Manajemen Resiko</text>
-              <text x="165" y="325" class="room-category-label">Kantor</text>
+            <g class="room-group" data-room-id="l3-toilet-private">
+              <rect x="190" y="40" width="80" height="120" rx="12" class="room-path" />
+              <text x="230" y="96" class="room-label">WC Privat</text>
+              <text x="230" y="110" class="room-category-label">Fasilitas</text>
             </g>
             
-            <g class="room-group" data-room-id="l3-pdn">
-              <rect x="520" y="80" width="230" height="260" rx="12" class="room-path" />
-              
-              <g opacity="0.8" stroke="#cbd5e1" stroke-width="1.5" fill="none">
-                
-                <rect x="540" y="95" width="20" height="35" rx="1" />
-                <rect x="570" y="95" width="20" height="35" rx="1" />
-                <rect x="600" y="95" width="20" height="35" rx="1" />
-                
-                <rect x="540" y="240" width="20" height="35" rx="1" />
-                <rect x="570" y="240" width="20" height="35" rx="1" />
-                <rect x="600" y="240" width="20" height="35" rx="1" />
-              </g>
-              
-              <line x1="645" y1="80" x2="645" y2="340" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3" />
-              <text x="635" y="175" class="room-label">Pusat Data &</text>
-              <text x="635" y="193" class="room-label">Server BBLSDMP</text>
-              <text x="635" y="325" class="room-category-label">Kantor</text>
+            <g class="room-group" data-room-id="l3-kepala-balai">
+              <rect x="50" y="160" width="220" height="100" rx="12" class="room-path" />
+              <text x="160" y="206" class="room-label">Kepala Balai</text>
+              <text x="160" y="220" class="room-category-label">Kantor</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-rapat">
+              <rect x="50" y="260" width="220" height="100" rx="12" class="room-path" />
+              <text x="160" y="306" class="room-label">Rapat Pimpinan</text>
+              <text x="160" y="320" class="room-category-label">Rapat</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-arsip">
+              <rect x="270" y="40" width="130" height="120" rx="12" class="room-path" />
+              <text x="335" y="96" class="room-label">Ruang Arsip</text>
+              <text x="335" y="110" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-keuangan">
+              <rect x="400" y="40" width="130" height="120" rx="12" class="room-path" />
+              <text x="465" y="96" class="room-label">Ruang Keuangan</text>
+              <text x="465" y="110" class="room-category-label">Kantor</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-coworking">
+              <rect x="270" y="160" width="260" height="200" rx="12" class="room-path" />
+              <text x="400" y="256" class="room-label">Co-Working Space</text>
+              <text x="400" y="270" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-bendahara">
+              <rect x="530" y="40" width="110" height="60" rx="8" class="room-path" />
+              <text x="585" y="66" class="room-label" style="font-size: 9px;">Bendahara</text>
+              <text x="585" y="78" class="room-category-label">Kantor</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-bmn">
+              <rect x="530" y="100" width="110" height="60" rx="8" class="room-path" />
+              <text x="585" y="126" class="room-label" style="font-size: 9px;">Ruang BMN</text>
+              <text x="585" y="138" class="room-category-label">Kantor</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-kabag-umum">
+              <rect x="640" y="40" width="110" height="120" rx="12" class="room-path" />
+              <text x="695" y="96" class="room-label">Kabag Umum</text>
+              <text x="695" y="110" class="room-category-label">Kantor</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-mengajar-studio">
+              <rect x="530" y="160" width="220" height="200" rx="12" class="room-path" />
+              <text x="640" y="254" class="room-label">Studio Mengajar</text>
+              <text x="640" y="266" class="room-label" style="font-size: 8px;">& Mini Studio</text>
+              <text x="640" y="280" class="room-category-label">Layanan</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-toilet-pria">
+              <rect x="50" y="360" width="110" height="50" rx="8" class="room-path" />
+              <text x="105" y="382" class="room-label" style="font-size: 9px;">Toilet Pria</text>
+              <text x="105" y="393" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l3-toilet-wanita">
+              <rect x="50" y="410" width="110" height="50" rx="8" class="room-path" />
+              <text x="105" y="432" class="room-label" style="font-size: 9px;">Toilet Wanita</text>
+              <text x="105" y="443" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="elevator-group">
+              <rect x="270" y="360" width="60" height="100" rx="8" class="map-elevator" />
+              <line x1="270" y1="410" x2="330" y2="410" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <line x1="300" y1="360" x2="300" y2="460" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <text x="300" y="390" class="elevator-label">LIFT</text>
+            </g>
+            
+            <g class="stairs-group">
+              <rect x="640" y="360" width="110" height="100" rx="8" class="map-stairs" />
+              <line x1="640" y1="375" x2="750" y2="375" />
+              <line x1="640" y1="390" x2="750" y2="390" />
+              <line x1="640" y1="405" x2="750" y2="405" />
+              <line x1="640" y1="420" x2="750" y2="420" />
+              <line x1="640" y1="435" x2="750" y2="435" />
+              <text x="695" y="425" class="stairs-label">TANGGA</text>
             </g>
             
             <g class="room-group" data-room-id="l3-pantry">
-              <rect x="340" y="350" width="120" height="90" rx="12" class="room-path" />
-              
-              <path d="M 350,420 L 350,430 L 400,430 L 400,420" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.7" />
-              <text x="400" y="390" class="room-label">Pantry & Lounge</text>
-              <text x="400" y="410" class="room-category-label">Fasilitas</text>
+              <rect x="530" y="360" width="110" height="100" rx="8" class="room-path" />
+              <text x="585" y="406" class="room-label" style="font-size: 9px;">Pantry</text>
+              <text x="585" y="419" class="room-category-label">Fasilitas</text>
             </g>
+            
+            <rect x="470" y="360" width="60" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+            <text x="500" y="410" class="stairs-label" style="font-size:7px;">PANEL</text>
+            
+            <rect x="330" y="360" width="140" height="100" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3" />
+            <text x="400" y="410" class="stairs-label" style="font-size: 9px; fill: #64748b;">SELASAR</text>
+          </svg>
+        </div>
 
-            <g class="room-group" data-room-id="l3-toilet">
-              <rect x="470" y="350" width="60" height="90" rx="12" class="room-path" />
-              <text x="500" y="390" class="room-label">Toilet</text>
-              <text x="500" y="410" class="room-category-label">Fasilitas</text>
+        <!-- --- LANTAI 4 [BARU] --- -->
+        <div class="floor-map hidden" id="map-floor-4">
+          <svg viewBox="0 0 800 500" class="floor-svg">
+            <rect x="20" y="20" width="760" height="460" rx="16" class="map-shell" />
+            
+            <!-- Selasar/Corridor -->
+            <rect x="270" y="160" width="260" height="200" class="map-corridor" />
+            
+            <!-- Lapangan Upacara (Rooftop Field) -->
+            <g class="room-group" data-room-id="l4-lapangan-upacara">
+              <rect x="50" y="40" width="700" height="120" rx="12" class="room-path" style="fill: rgba(16, 185, 129, 0.04); stroke: rgba(16, 185, 129, 0.2);" />
+              <!-- Running Track / Field Decoration -->
+              <rect x="70" y="50" width="660" height="100" rx="8" fill="none" stroke="rgba(16, 185, 129, 0.15)" stroke-width="1" stroke-dasharray="4" />
+              <text x="400" y="96" class="room-label" style="fill: #065f46;">Lapangan Upacara & Olahraga (Rooftop)</text>
+              <text x="400" y="110" class="room-category-label" style="fill: #047857;">Fasilitas</text>
             </g>
-
+            
+            <g class="room-group" data-room-id="l4-seminar">
+              <rect x="50" y="160" width="220" height="200" rx="12" class="room-path" />
+              <text x="160" y="256" class="room-label">Ruang Seminar Utama</text>
+              <text x="160" y="270" class="room-category-label">Rapat</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l4-gym">
+              <rect x="530" y="160" width="220" height="200" rx="12" class="room-path" />
+              <text x="640" y="256" class="room-label">Ruang Gym</text>
+              <text x="640" y="270" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <g class="room-group" data-room-id="l4-dapur">
+              <rect x="50" y="360" width="110" height="100" rx="8" class="room-path" />
+              <text x="105" y="406" class="room-label" style="font-size: 9px;">Dapur Utama</text>
+              <text x="105" y="419" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <!-- WC Kiri 1 -->
+            <rect x="160" y="360" width="55" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+            <text x="187" y="412" class="stairs-label" style="font-size:8px;">WC 1</text>
+            
+            <!-- WC Kiri 2 -->
+            <rect x="215" y="360" width="55" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+            <text x="242" y="412" class="stairs-label" style="font-size:8px;">WC 2</text>
+            
+            <g class="elevator-group">
+              <rect x="270" y="360" width="60" height="100" rx="8" class="map-elevator" />
+              <line x1="270" y1="410" x2="330" y2="410" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <line x1="300" y1="360" x2="300" y2="460" stroke="#3b82f6" stroke-width="1.5" opacity="0.8" />
+              <text x="300" y="390" class="elevator-label">LIFT</text>
+            </g>
+            
             <g class="stairs-group">
-              <rect x="440" y="210" width="60" height="55" rx="8" class="map-stairs" />
-              <line x1="440" y1="220" x2="500" y2="220" />
-              <line x1="440" y1="230" x2="500" y2="230" />
-              <line x1="440" y1="240" x2="500" y2="240" />
-              <line x1="440" y1="250" x2="500" y2="250" />
-              <text x="470" y="258" class="stairs-label">TANGGA</text>
+              <rect x="640" y="360" width="110" height="100" rx="8" class="map-stairs" />
+              <line x1="640" y1="375" x2="750" y2="375" />
+              <line x1="640" y1="390" x2="750" y2="390" />
+              <line x1="640" y1="405" x2="750" y2="405" />
+              <line x1="640" y1="420" x2="750" y2="420" />
+              <line x1="640" y1="435" x2="750" y2="435" />
+              <text x="695" y="425" class="stairs-label">TANGGA</text>
             </g>
+            
+            <g class="room-group" data-room-id="l4-toilet-gym">
+              <rect x="530" y="360" width="110" height="100" rx="8" class="room-path" />
+              <text x="585" y="404" class="room-label" style="font-size: 8px;">Toilet Gym</text>
+              <text x="585" y="415" class="room-label" style="font-size: 8px;">& Ruang Ganti</text>
+              <text x="585" y="428" class="room-category-label">Fasilitas</text>
+            </g>
+            
+            <rect x="470" y="360" width="60" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
+            <text x="500" y="410" class="stairs-label" style="font-size:7px;">PANEL</text>
+            
+            <!-- Mid-corridor decorative garden circle -->
+            <circle cx="400" cy="260" r="15" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="2" />
+            <circle cx="400" cy="260" r="4" fill="#cbd5e1" />
+            
+            <rect x="330" y="360" width="140" height="100" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="3" />
+            <text x="400" y="410" class="stairs-label" style="font-size: 9px; fill: #64748b;">LOBBY ROOFTOP</text>
           </svg>
         </div>
 
       </div>
 
       <div class="floor-selector-widget">
+        <button class="floor-btn" data-floor="4">L4</button>
         <button class="floor-btn" data-floor="3">L3</button>
         <button class="floor-btn" data-floor="2">L2</button>
         <button class="floor-btn active" data-floor="1">L1</button>
